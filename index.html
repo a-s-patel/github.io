@@ -1,0 +1,1873 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Growth Marketing Hub</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#8A6FDF", secondary: "#1E293B" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+      font-family: 'Inter', sans-serif;
+      }
+      .gradient-bg {
+      background: linear-gradient(135deg, #f9f7ff 0%, #e6e0ff 100%);
+      }
+      .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(138, 111, 223, 0.1);
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+      }
+      .custom-checkbox {
+      position: relative;
+      cursor: pointer;
+      }
+      .custom-checkbox input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      }
+      .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 20px;
+      width: 20px;
+      background-color: #fff;
+      border: 2px solid #e2e8f0;
+      border-radius: 4px;
+      }
+      .custom-checkbox:hover input ~ .checkmark {
+      border-color: #8A6FDF;
+      }
+      .custom-checkbox input:checked ~ .checkmark {
+      background-color: #8A6FDF;
+      border-color: #8A6FDF;
+      }
+      .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+      }
+      .custom-checkbox input:checked ~ .checkmark:after {
+      display: block;
+      }
+      .custom-checkbox .checkmark:after {
+      left: 6px;
+      top: 2px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      }
+      .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+      }
+      .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      }
+      .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #e2e8f0;
+      transition: .4s;
+      border-radius: 34px;
+      }
+      .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+      }
+      input:checked + .toggle-slider {
+      background-color: #8A6FDF;
+      }
+      input:checked + .toggle-slider:before {
+      transform: translateX(26px);
+      }
+      .progress-bar {
+      height: 8px;
+      background-color: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+      }
+      .progress-fill {
+      height: 100%;
+      background: linear-gradient(to right, #8A6FDF, #9d87e5);
+      border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body class="bg-white min-h-screen">
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-sm">
+      <div
+        class="container mx-auto px-4 py-4 flex items-center justify-between"
+      >
+        <div class="flex items-center space-x-2">
+          <h1 class="text-2xl font-['Pacifico'] text-primary">logo</h1>
+        </div>
+        <nav class="hidden md:flex items-center space-x-8">
+          <a
+            href="#"
+            class="text-gray-800 hover:text-primary font-semibold relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
+            >Playbooks</a
+          >
+          <a
+            href="#"
+            class="text-gray-800 hover:text-primary font-semibold relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
+            >Case Studies</a
+          >
+          <a
+            href="#"
+            class="text-gray-800 hover:text-primary font-semibold relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
+            >Creative Lab</a
+          >
+          <a
+            href="#"
+            class="text-gray-800 hover:text-primary font-semibold relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
+            >Growth Vault</a
+          >
+          <a
+            href="#"
+            class="text-gray-800 hover:text-primary font-semibold relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
+            >Media</a
+          >
+        </nav>
+        <div class="flex items-center space-x-2">
+          <label class="toggle-switch">
+            <input type="checkbox" id="darkModeToggle" />
+            <span class="toggle-slider"></span>
+          </label>
+          <button
+            class="text-gray-700 hover:text-primary border border-gray-300 px-4 py-2 !rounded-button font-medium"
+          >
+            Sign In
+          </button>
+          <button
+            class="bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90"
+          >
+            Sign Up
+          </button>
+          <div class="md:hidden w-8 h-8 flex items-center justify-center">
+            <i class="ri-menu-line ri-lg"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden">
+      <div
+        style="background-image: url('https://readdy.ai/api/search-image?query=Professional%20marketing%20dashboard%20with%20analytics%20charts%20and%20creative%20assets%2C%20modern%20office%20setting%20with%20soft%20purple%20and%20blue%20lighting%2C%20clean%20minimalist%20design%2C%20high-end%20technology%20feel%2C%20abstract%20data%20visualization%20elements&width=1920&height=1080&seq=1&orientation=landscape');"
+        class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      ></div>
+      <div
+        class="relative container mx-auto px-4 py-16 md:py-24 flex flex-col md:flex-row items-center"
+      >
+        <div
+          class="w-full md:w-1/2 p-8 md:p-12 !rounded-lg bg-gradient-to-r from-[#1E293B]/85 via-[#1E293B]/70 to-transparent backdrop-blur-[2px]"
+        >
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+            Where Growth Marketers Level Up
+          </h1>
+          <p class="text-lg text-gray-200 mb-8">
+            Blending creativity, analytics, and psychology into actionable
+            strategies that drive real results — not just impressions.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 mb-8">
+            <button
+              class="hero-button bg-primary text-white h-[50px] px-6 !rounded-button font-medium hover:bg-opacity-90 whitespace-nowrap flex items-center justify-center"
+            >
+              <span>Get Started</span>
+              <i class="ri-arrow-right-line ml-2"></i>
+            </button>
+            <button
+              class="hero-button border-2 border-gray-400 bg-white bg-opacity-90 text-gray-800 h-[50px] px-6 !rounded-button font-medium hover:bg-opacity-100 hover:border-primary whitespace-nowrap flex items-center justify-center"
+            >
+              <i class="ri-calculator-line mr-2"></i>
+              <span>Estimate Your CAC</span>
+            </button>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="flex -space-x-2">
+              <div
+                class="w-10 h-10 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center overflow-hidden"
+              >
+                <i class="ri-user-fill ri-lg text-gray-500"></i>
+              </div>
+              <div
+                class="w-10 h-10 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center overflow-hidden"
+              >
+                <i class="ri-user-fill ri-lg text-gray-500"></i>
+              </div>
+              <div
+                class="w-10 h-10 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center overflow-hidden"
+              >
+                <i class="ri-user-fill ri-lg text-gray-500"></i>
+              </div>
+            </div>
+            <p class="text-sm text-gray-100 font-medium">
+              Join 5,000+ growth marketers already crushing it
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Featured Playbooks Grid with Gamification -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center mb-10">
+          <div>
+            <h2 class="text-3xl font-bold text-gray-900">Featured Playbooks</h2>
+            <p class="text-gray-600 mt-2">
+              Templates and frameworks you can actually use
+            </p>
+          </div>
+          <div class="flex items-center gap-3">
+            <div
+              class="bg-white shadow-sm rounded-full px-4 py-2 flex items-center"
+            >
+              <span class="text-sm font-medium text-gray-700 mr-2"
+                >Your Level:</span
+              >
+              <span class="text-sm font-semibold text-primary"
+                >Growth Hacker</span
+              >
+            </div>
+            <div
+              class="bg-white shadow-sm rounded-full px-4 py-2 flex items-center"
+            >
+              <i class="ri-award-fill ri-lg text-yellow-500 mr-2"></i>
+              <span class="text-sm font-medium">450 pts</span>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Playbook Card 1 -->
+          <div
+            class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group"
+          >
+            <div class="h-48 bg-gray-100 relative">
+              <img
+                src="https://readdy.ai/api/search-image?query=Social%20media%20marketing%20strategy%20document%20with%20Meta%20logos%20and%20analytics%20charts%2C%20professional%20business%20setting%2C%20clean%20design%20with%20purple%20accents%2C%20marketing%20planning%20materials&width=600&height=400&seq=2&orientation=landscape"
+                alt="Meta Hooks Playbook"
+                class="w-full h-full object-cover object-top"
+              />
+              <div
+                class="absolute top-4 right-4 bg-primary text-white text-xs font-semibold px-4 py-2 rounded-full shadow-sm backdrop-blur-sm"
+              >
+                Most Popular
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-center mb-5">
+                <span class="text-xs font-medium text-[#9A9A9A]"
+                  >Social Media</span
+                >
+                <div class="flex items-center">
+                  <i class="ri-star-fill text-yellow-400 mr-1"></i>
+                  <span class="text-sm font-medium">4.9</span>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
+                Meta Hooks Playbook
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Master the art of scroll-stopping hooks that convert on Facebook
+                and Instagram.
+              </p>
+              <div class="mb-4">
+                <div class="flex justify-between text-xs text-gray-500 mb-1">
+                  <span>Progress</span>
+                  <span>75%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 75%"></div>
+                </div>
+              </div>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <div
+                    class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center mr-2"
+                  >
+                    <i class="ri-file-text-line text-primary"></i>
+                  </div>
+                  <span class="text-sm text-gray-600">15 templates</span>
+                </div>
+                <button
+                  class="bg-primary text-white px-4 py-2 !rounded-button text-sm font-medium hover:bg-opacity-90 whitespace-nowrap"
+                >
+                  Continue
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Playbook Card 2 -->
+          <div
+            class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group"
+          >
+            <div class="h-48 bg-gray-100 relative">
+              <img
+                src="https://readdy.ai/api/search-image?query=YouTube%20SEO%20strategy%20document%20with%20thumbnails%20and%20analytics%20charts%2C%20professional%20content%20creator%20workspace%2C%20clean%20design%20with%20purple%20accents%2C%20video%20marketing%20planning%20materials&width=600&height=400&seq=3&orientation=landscape"
+                alt="YouTube SEO Hacks"
+                class="w-full h-full object-cover object-top"
+              />
+              <div
+                class="absolute top-4 right-4 bg-gray-800 text-white text-xs font-semibold px-4 py-2 rounded-full shadow-sm backdrop-blur-sm"
+              >
+                New
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-center mb-3">
+                <span class="text-xs font-medium text-[#9A9A9A]">Video</span>
+                <div class="flex items-center">
+                  <i class="ri-star-fill text-yellow-400 mr-1"></i>
+                  <span class="text-sm font-medium">4.7</span>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
+                YouTube SEO Hacks
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Optimize your videos to rank higher and get discovered by your
+                target audience.
+              </p>
+              <div class="mb-4">
+                <div class="flex justify-between text-xs text-gray-500 mb-1">
+                  <span>Progress</span>
+                  <span>10%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 10%"></div>
+                </div>
+              </div>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <div
+                    class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center mr-2"
+                  >
+                    <i class="ri-file-text-line text-primary"></i>
+                  </div>
+                  <span class="text-sm text-gray-600">12 templates</span>
+                </div>
+                <button
+                  class="bg-primary text-white px-4 py-2 !rounded-button text-sm font-medium hover:bg-opacity-90 whitespace-nowrap"
+                >
+                  Start
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Playbook Card 3 -->
+          <div
+            class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group"
+          >
+            <div class="h-48 bg-gray-100 relative">
+              <img
+                src="https://readdy.ai/api/search-image?query=Marketing%20funnel%20diagram%20with%20tracking%20metrics%20and%20conversion%20rates%2C%20professional%20business%20analytics%2C%20clean%20design%20with%20purple%20accents%2C%20funnel%20optimization%20strategy&width=600&height=400&seq=4&orientation=landscape"
+                alt="Funnel Tracking Outlines"
+                class="w-full h-full object-cover object-top"
+              />
+              <div
+                class="absolute top-4 right-4 bg-gray-800 text-white text-xs font-semibold px-4 py-2 rounded-full shadow-sm backdrop-blur-sm"
+              >
+                Advanced
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-center mb-3">
+                <span class="text-xs font-medium text-[#9A9A9A]"
+                  >Analytics</span
+                >
+                <div class="flex items-center">
+                  <i class="ri-star-fill text-yellow-400 mr-1"></i>
+                  <span class="text-sm font-medium">4.8</span>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
+                Funnel Tracking Outlines
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Track every step of your customer journey with these
+                ready-to-use templates.
+              </p>
+              <div class="mb-4">
+                <div class="flex justify-between text-xs text-gray-500 mb-1">
+                  <span>Progress</span>
+                  <span>0%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 0%"></div>
+                </div>
+              </div>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <div
+                    class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center mr-2"
+                  >
+                    <i class="ri-file-text-line text-primary"></i>
+                  </div>
+                  <span class="text-sm text-gray-600">8 templates</span>
+                </div>
+                <button
+                  class="bg-gray-200 text-gray-700 px-4 py-2 !rounded-button text-sm font-medium hover:bg-gray-300 whitespace-nowrap"
+                >
+                  Unlock
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-10 text-center">
+          <button
+            class="border border-gray-300 text-gray-700 px-8 py-4 !rounded-button font-medium hover:bg-gray-50 whitespace-nowrap text-lg"
+          >
+            View All Playbooks
+            <i class="ri-arrow-right-line ml-2"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Featured Growth Experiment -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center mb-12">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900">
+              Growth Experiment of the Month
+            </h2>
+            <p class="text-gray-600 mt-3 text-sm">April 28, 2025</p>
+          </div>
+          <div>
+            <button
+              class="text-primary hover:text-primary-dark font-medium flex items-center"
+            >
+              <i class="ri-history-line mr-2"></i>
+              <span>View past experiments</span>
+              <i class="ri-arrow-right-line ml-2"></i>
+            </button>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="grid grid-cols-1 lg:grid-cols-2">
+            <div class="p-8">
+              <div class="flex items-center mb-6">
+                <div
+                  class="w-12 h-12 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-4"
+                >
+                  <i class="ri-flask-line text-primary ri-lg"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-gray-900">
+                    Email Subject Line A/B Test
+                  </h3>
+                  <p class="text-gray-600">
+                    By Sarah Johnson, Growth Lead at TechCorp
+                  </p>
+                </div>
+              </div>
+              <div
+                class="mb-8 bg-[#28C76F]/5 p-6 rounded-lg border border-[#28C76F]/10"
+              >
+                <div class="flex items-center mb-3">
+                  <div
+                    class="w-8 h-8 rounded-full bg-[#28C76F]/10 flex items-center justify-center mr-3"
+                  >
+                    <i class="ri-arrow-up-line text-[#28C76F] ri-lg"></i>
+                  </div>
+                  <div>
+                    <span class="text-2xl font-bold text-[#28C76F]"
+                      >+32% Open Rate</span
+                    >
+                    <p class="text-[#28C76F]/80 mt-1">
+                      Increased from 18.5% to 24.4% across 50,000 subscribers
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-8">
+                <div class="flex items-center mb-4">
+                  <i class="ri-lightbulb-line text-primary ri-lg mr-2"></i>
+                  <h4 class="text-lg font-semibold text-gray-900">
+                    The Hypothesis
+                  </h4>
+                </div>
+                <p class="text-gray-600 mb-6 pl-7">
+                  Using question-based subject lines with personal pronouns
+                  (you/your) will increase open rates for our product
+                  announcement emails.
+                </p>
+                <div
+                  class="bg-[#F8FAFC] p-6 rounded-lg mb-4 border border-gray-100"
+                >
+                  <div class="flex items-start mb-4">
+                    <div
+                      class="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center mr-3 mt-0.5"
+                    >
+                      <span class="text-xs font-bold">A</span>
+                    </div>
+                    <div>
+                      <p class="font-medium text-gray-900">
+                        "Introducing Our New Analytics Dashboard"
+                      </p>
+                      <p class="text-sm text-gray-600">18.5% open rate</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <div
+                      class="w-6 h-6 rounded-full bg-primary flex items-center justify-center mr-3 mt-0.5"
+                    >
+                      <span class="text-xs font-bold text-white">B</span>
+                    </div>
+                    <div>
+                      <p class="font-medium text-gray-900">
+                        "Is your marketing data working for you?"
+                      </p>
+                      <p class="text-sm text-gray-600">24.4% open rate</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <button
+                  class="bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-opacity-90 whitespace-nowrap flex items-center"
+                >
+                  <i class="ri-flask-line mr-2"></i>
+                  Try This Experiment
+                </button>
+                <button
+                  class="border border-gray-300 text-gray-700 px-6 py-3 !rounded-button font-medium hover:bg-gray-50 whitespace-nowrap flex items-center"
+                >
+                  <i class="ri-bookmark-line mr-2"></i>
+                  Save
+                </button>
+              </div>
+            </div>
+            <div class="bg-gray-50 p-8">
+              <h4 class="text-lg font-semibold text-gray-900 mb-4">
+                Key Learnings
+              </h4>
+              <div class="space-y-4 mb-6">
+                <div class="flex">
+                  <div
+                    class="w-6 h-6 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0"
+                  >
+                    <i class="ri-check-line text-primary"></i>
+                  </div>
+                  <p class="text-gray-700">
+                    Questions create a curiosity gap that drives opens
+                  </p>
+                </div>
+                <div class="flex">
+                  <div
+                    class="w-6 h-6 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0"
+                  >
+                    <i class="ri-check-line text-primary"></i>
+                  </div>
+                  <p class="text-gray-700">
+                    Personal pronouns (you/your) create relevance
+                  </p>
+                </div>
+                <div class="flex">
+                  <div
+                    class="w-6 h-6 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0"
+                  >
+                    <i class="ri-check-line text-primary"></i>
+                  </div>
+                  <p class="text-gray-700">
+                    Problem-focused subjects outperformed feature announcements
+                  </p>
+                </div>
+                <div class="flex">
+                  <div
+                    class="w-6 h-6 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0"
+                  >
+                    <i class="ri-check-line text-primary"></i>
+                  </div>
+                  <p class="text-gray-700">
+                    Shorter subject lines (under 50 characters) performed best
+                  </p>
+                </div>
+              </div>
+              <div class="bg-white p-4 rounded-lg mb-6">
+                <h5 class="font-medium text-gray-900 mb-2">
+                  Implementation Timeline
+                </h5>
+                <div class="space-y-3">
+                  <div class="flex items-center">
+                    <div class="w-4 h-4 rounded-full bg-primary mr-3"></div>
+                    <p class="text-sm text-gray-600">
+                      Day 1-2: Hypothesis & Setup
+                    </p>
+                  </div>
+                  <div class="flex items-center">
+                    <div class="w-4 h-4 rounded-full bg-primary mr-3"></div>
+                    <p class="text-sm text-gray-600">
+                      Day 3-5: Email Creation & Segmentation
+                    </p>
+                  </div>
+                  <div class="flex items-center">
+                    <div class="w-4 h-4 rounded-full bg-primary mr-3"></div>
+                    <p class="text-sm text-gray-600">
+                      Day 6-13: Campaign Run & Data Collection
+                    </p>
+                  </div>
+                  <div class="flex items-center">
+                    <div class="w-4 h-4 rounded-full bg-primary mr-3"></div>
+                    <p class="text-sm text-gray-600">
+                      Day 14: Analysis & Documentation
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <div
+                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden mr-3"
+                  >
+                    <i class="ri-team-fill text-primary ri-lg"></i>
+                  </div>
+                  <span class="text-base font-medium text-gray-700"
+                    >146 marketers tried this</span
+                  >
+                </div>
+                <div class="flex items-center">
+                  <button
+                    class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center mr-2 hover:bg-gray-200"
+                  >
+                    <i class="ri-share-line text-gray-600"></i>
+                  </button>
+                  <button
+                    class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200"
+                  >
+                    <i class="ri-download-line text-gray-600"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Case Studies Carousel -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center mb-8">
+          <div>
+            <h2 class="text-3xl font-bold text-gray-900">Case Studies</h2>
+            <p class="text-gray-600 mt-2">
+              Real-world breakdowns of experiments, wins, and fails
+            </p>
+          </div>
+          <div class="flex items-center -mr-4">
+            <button
+              class="w-14 h-14 rounded-full bg-white shadow-sm flex items-center justify-center hover:bg-gray-50 transition-colors"
+              id="prevCase"
+            >
+              <i class="ri-arrow-left-s-line text-gray-600 ri-xl"></i>
+            </button>
+            <button
+              class="w-14 h-14 rounded-full bg-white shadow-sm flex items-center justify-center hover:bg-gray-50 transition-colors ml-2"
+              id="nextCase"
+            >
+              <i class="ri-arrow-right-s-line text-gray-600 ri-xl"></i>
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          id="caseStudiesContainer"
+        >
+          <!-- Case Study 1 -->
+          <a
+            href="#"
+            class="block bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group cursor-pointer"
+          >
+            <div class="h-48 bg-gray-100">
+              <img
+                src="https://readdy.ai/api/search-image?query=E-commerce%20website%20on%20laptop%20with%20analytics%20dashboard%20showing%20increased%20conversion%20rates%2C%20professional%20business%20setting%2C%20marketing%20strategy%20success%20story&width=600&height=400&seq=5&orientation=landscape"
+                alt="E-commerce Conversion Rate Optimization"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-3">
+                <span
+                  class="text-sm font-medium text-white bg-green-500 px-3 py-1.5 rounded-full mr-2"
+                  >Success</span
+                >
+                <span
+                  class="text-sm font-medium text-gray-500 bg-gray-100 px-3 py-1.5 rounded-full"
+                  >E-commerce</span
+                >
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
+                How FashionFwd Increased Conversions by 43%
+              </h3>
+              <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                A complete redesign of their product pages with a focus on
+                social proof and urgency.
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <div
+                    class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden mr-2"
+                  >
+                    <i class="ri-user-fill text-gray-500"></i>
+                  </div>
+                  <span class="text-sm text-gray-600">Emma Richardson</span>
+                </div>
+                <span
+                  class="text-primary group-hover:text-primary-dark font-medium text-sm flex items-center transition-colors"
+                >
+                  <span>Read Case Study</span>
+                  <i class="ri-arrow-right-line ml-1"></i>
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- Case Study 2 -->
+          <div
+            class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group"
+          >
+            <div class="h-48 bg-gray-100">
+              <img
+                src="https://readdy.ai/api/search-image?query=SaaS%20product%20dashboard%20with%20user%20onboarding%20flow%20and%20analytics%20showing%20improved%20retention%20rates%2C%20professional%20business%20setting%2C%20clean%20design%20with%20purple%20accents&width=600&height=400&seq=6&orientation=landscape"
+                alt="SaaS Onboarding Optimization"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-3">
+                <span
+                  class="text-xs font-medium text-white bg-green-500 px-2 py-1 rounded-full mr-2"
+                  >Success</span
+                >
+                <span class="text-xs font-medium text-gray-500">SaaS</span>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
+                CloudTech's Onboarding Revamp That Cut Churn by 35%
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Simplifying the first-time user experience with guided tours and
+                progress tracking.
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <div
+                    class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden mr-2"
+                  >
+                    <i class="ri-user-fill text-gray-500"></i>
+                  </div>
+                  <span class="text-sm text-gray-600">Michael Chen</span>
+                </div>
+                <button
+                  class="text-primary hover:text-primary-dark font-medium text-sm flex items-center"
+                >
+                  <span>Read Case Study</span>
+                  <i class="ri-arrow-right-line ml-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Case Study 3 -->
+          <div
+            class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group"
+          >
+            <div class="h-48 bg-gray-100">
+              <img
+                src="https://readdy.ai/api/search-image?query=Mobile%20app%20marketing%20campaign%20with%20paid%20ads%20dashboard%20showing%20high%20costs%20and%20poor%20results%2C%20professional%20business%20setting%2C%20marketing%20failure%20analysis&width=600&height=400&seq=7&orientation=landscape"
+                alt="Mobile App UA Failure"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-3">
+                <span
+                  class="text-xs font-medium text-white bg-red-500 px-2 py-1 rounded-full mr-2"
+                  >Failure</span
+                >
+                <span class="text-xs font-medium text-gray-500">Mobile</span>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
+                Why FitTrack's $50K UA Campaign Failed (And What They Learned)
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                A cautionary tale of poor audience targeting and creative
+                misalignment.
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <div
+                    class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden mr-2"
+                  >
+                    <i class="ri-user-fill text-gray-500"></i>
+                  </div>
+                  <span class="text-sm text-gray-600">James Wilson</span>
+                </div>
+                <button
+                  class="text-primary hover:text-primary-dark font-medium text-sm flex items-center"
+                >
+                  <span>Read Case Study</span>
+                  <i class="ri-arrow-right-line ml-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-12 text-center">
+          <button
+            class="border border-gray-300 text-gray-700 px-10 py-4 !rounded-button text-lg font-medium hover:bg-gray-50 whitespace-nowrap transition-colors shadow-sm"
+          >
+            Browse All Case Studies
+            <i class="ri-arrow-right-line ml-2"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Creative Lab Gallery -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center mb-10">
+          <div>
+            <h2 class="text-3xl font-bold text-gray-900">Creative Lab</h2>
+            <p class="text-gray-600 mt-2">
+              Inspiration gallery for ads, hooks, CTAs, and landing pages
+            </p>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="flex bg-gray-100 rounded-full p-1">
+              <button
+                class="px-4 py-2 rounded-full bg-primary text-white shadow-sm text-sm font-medium"
+              >
+                All
+              </button>
+              <button
+                class="px-4 py-2 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+              >
+                Ads
+              </button>
+              <button
+                class="px-4 py-2 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+              >
+                Landing Pages
+              </button>
+              <button
+                class="px-4 py-2 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+              >
+                Emails
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <!-- Creative Item 1 -->
+          <div class="relative group overflow-hidden rounded-lg shadow-sm">
+            <img
+              src="https://readdy.ai/api/search-image?query=Facebook%20ad%20creative%20for%20fitness%20app%20with%20compelling%20headline%20and%20call%20to%20action%2C%20professional%20marketing%20design%2C%20clean%20layout%20with%20purple%20accents%2C%20slightly%20blurred%20mockup%20style&width=400&height=400&seq=8&orientation=squarish"
+              alt="Facebook Ad Creative"
+              class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105 filter blur-[0.5px]"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4"
+            >
+              <h3 class="text-white font-bold">Facebook Ad: FitLife App</h3>
+              <p class="text-gray-200 text-sm">3.2% CTR, $1.45 CPA</p>
+              <div class="flex mt-2">
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-2 hover:bg-opacity-30"
+                >
+                  <i class="ri-heart-line text-white"></i>
+                </button>
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-2 hover:bg-opacity-30"
+                >
+                  <i class="ri-bookmark-line text-white"></i>
+                </button>
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30"
+                >
+                  <i class="ri-download-line text-white"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Creative Item 2 -->
+          <div class="relative group overflow-hidden rounded-lg shadow-sm">
+            <img
+              src="https://readdy.ai/api/search-image?query=Email%20newsletter%20design%20for%20SaaS%20product%20with%20clean%20layout%20and%20prominent%20call%20to%20action%20button%2C%20professional%20marketing%20design%2C%20modern%20email%20template%2C%20slightly%20blurred%20mockup%20style&width=400&height=400&seq=9&orientation=squarish"
+              alt="Email Newsletter Design"
+              class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105 filter blur-[0.5px]"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4"
+            >
+              <h3 class="text-white font-bold">Email: CloudTech Newsletter</h3>
+              <p class="text-gray-200 text-sm">42% Open Rate, 12% CTR</p>
+              <div class="flex mt-2">
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-2 hover:bg-opacity-30"
+                >
+                  <i class="ri-heart-line text-white"></i>
+                </button>
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-2 hover:bg-opacity-30"
+                >
+                  <i class="ri-bookmark-line text-white"></i>
+                </button>
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30"
+                >
+                  <i class="ri-download-line text-white"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Creative Item 3 -->
+          <div class="relative group overflow-hidden rounded-lg shadow-sm">
+            <img
+              src="https://readdy.ai/api/search-image?query=Landing%20page%20design%20for%20e-commerce%20product%20with%20clean%20layout%20and%20prominent%20buy%20now%20button%2C%20professional%20marketing%20design%2C%20conversion-optimized%20page%2C%20slightly%20blurred%20mockup%20style&width=400&height=400&seq=10&orientation=squarish"
+              alt="Landing Page Design"
+              class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105 filter blur-[0.5px]"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4"
+            >
+              <h3 class="text-white font-bold">Landing Page: FashionFwd</h3>
+              <p class="text-gray-200 text-sm">18% Conversion Rate</p>
+              <div class="flex mt-2">
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-2 hover:bg-opacity-30"
+                >
+                  <i class="ri-heart-line text-white"></i>
+                </button>
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-2 hover:bg-opacity-30"
+                >
+                  <i class="ri-bookmark-line text-white"></i>
+                </button>
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30"
+                >
+                  <i class="ri-download-line text-white"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Creative Item 4 -->
+          <div class="relative group overflow-hidden rounded-lg shadow-sm">
+            <img
+              src="https://readdy.ai/api/search-image?query=Instagram%20ad%20creative%20for%20lifestyle%20brand%20with%20compelling%20image%20and%20call%20to%20action%2C%20professional%20marketing%20design%2C%20social%20media%20optimized%20layout%2C%20slightly%20blurred%20mockup%20style&width=400&height=400&seq=11&orientation=squarish"
+              alt="Instagram Ad Creative"
+              class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105 filter blur-[0.5px]"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4"
+            >
+              <h3 class="text-white font-bold">Instagram Ad: TravelEase</h3>
+              <p class="text-gray-200 text-sm">4.5% CTR, $2.10 CPA</p>
+              <div class="flex mt-2">
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-2 hover:bg-opacity-30"
+                >
+                  <i class="ri-heart-line text-white"></i>
+                </button>
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-2 hover:bg-opacity-30"
+                >
+                  <i class="ri-bookmark-line text-white"></i>
+                </button>
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30"
+                >
+                  <i class="ri-download-line text-white"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Creative Item 5 -->
+          <div class="relative group overflow-hidden rounded-lg shadow-sm">
+            <img
+              src="https://readdy.ai/api/search-image?query=Google%20search%20ad%20creative%20with%20compelling%20headline%20and%20description%2C%20professional%20marketing%20design%2C%20search%20engine%20optimized%20layout&width=400&height=400&seq=12&orientation=squarish"
+              alt="Google Search Ad"
+              class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4"
+            >
+              <h3 class="text-white font-bold">Google Search Ad: HomeServe</h3>
+              <p class="text-gray-200 text-sm">8.2% CTR, $22 CPA</p>
+              <div class="flex mt-2">
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-2 hover:bg-opacity-30"
+                >
+                  <i class="ri-heart-line text-white"></i>
+                </button>
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-2 hover:bg-opacity-30"
+                >
+                  <i class="ri-bookmark-line text-white"></i>
+                </button>
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30"
+                >
+                  <i class="ri-download-line text-white"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Creative Item 6 -->
+          <div class="relative group overflow-hidden rounded-lg shadow-sm">
+            <img
+              src="https://readdy.ai/api/search-image?query=Email%20welcome%20sequence%20design%20with%20onboarding%20steps%20and%20call%20to%20action%2C%20professional%20marketing%20design%2C%20user%20journey%20optimized%20layout&width=400&height=400&seq=13&orientation=squarish"
+              alt="Email Welcome Sequence"
+              class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4"
+            >
+              <h3 class="text-white font-bold">Email: Welcome Sequence</h3>
+              <p class="text-gray-200 text-sm">68% Open Rate, 24% CTR</p>
+              <div class="flex mt-2">
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-2 hover:bg-opacity-30"
+                >
+                  <i class="ri-heart-line text-white"></i>
+                </button>
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-2 hover:bg-opacity-30"
+                >
+                  <i class="ri-bookmark-line text-white"></i>
+                </button>
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30"
+                >
+                  <i class="ri-download-line text-white"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Creative Item 7 -->
+          <div class="relative group overflow-hidden rounded-lg shadow-sm">
+            <img
+              src="https://readdy.ai/api/search-image?query=YouTube%20video%20thumbnail%20design%20with%20compelling%20headline%20and%20visual%2C%20professional%20marketing%20design%2C%20video%20optimized%20layout%20with%20high%20click%20potential&width=400&height=400&seq=14&orientation=squarish"
+              alt="YouTube Thumbnail"
+              class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4"
+            >
+              <h3 class="text-white font-bold">
+                YouTube: TechReview Thumbnail
+              </h3>
+              <p class="text-gray-200 text-sm">12.4% CTR, 65% Watch Time</p>
+              <div class="flex mt-2">
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-2 hover:bg-opacity-30"
+                >
+                  <i class="ri-heart-line text-white"></i>
+                </button>
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-2 hover:bg-opacity-30"
+                >
+                  <i class="ri-bookmark-line text-white"></i>
+                </button>
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30"
+                >
+                  <i class="ri-download-line text-white"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Creative Item 8 -->
+          <div class="relative group overflow-hidden rounded-lg shadow-sm">
+            <img
+              src="https://readdy.ai/api/search-image?query=Product%20page%20design%20for%20e-commerce%20website%20with%20clean%20layout%20and%20buy%20now%20button%2C%20professional%20marketing%20design%2C%20conversion-optimized%20page%20with%20product%20details&width=400&height=400&seq=15&orientation=squarish"
+              alt="Product Page Design"
+              class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4"
+            >
+              <h3 class="text-white font-bold">Product Page: EcoGoods</h3>
+              <p class="text-gray-200 text-sm">22% Conversion Rate</p>
+              <div class="flex mt-2">
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-2 hover:bg-opacity-30"
+                >
+                  <i class="ri-heart-line text-white"></i>
+                </button>
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-2 hover:bg-opacity-30"
+                >
+                  <i class="ri-bookmark-line text-white"></i>
+                </button>
+                <button
+                  class="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30"
+                >
+                  <i class="ri-download-line text-white"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-10 text-center">
+          <button
+            class="border border-gray-300 text-gray-700 px-6 py-3 !rounded-button font-medium hover:bg-gray-50 whitespace-nowrap"
+          >
+            Explore Creative Lab
+            <i class="ri-arrow-right-line ml-2"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Growth Vault Tools -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center mb-10">
+          <div>
+            <h2 class="text-3xl font-bold text-gray-900">Growth Vault</h2>
+            <p class="text-gray-600 mt-2">
+              Quick access to CAC models, churn forecasts, ROAS calculators
+            </p>
+          </div>
+          <div>
+            <button
+              class="text-primary hover:text-primary-dark font-medium flex items-center"
+            >
+              <i class="ri-tools-line mr-2"></i>
+              <span>View all tools</span>
+              <i class="ri-arrow-right-line ml-2"></i>
+            </button>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Tool Card 1 -->
+          <div
+            class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group"
+          >
+            <div class="p-6">
+              <div
+                class="w-12 h-12 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mb-4"
+              >
+                <i class="ri-calculator-line text-primary ri-lg"></i>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
+                CAC Calculator
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Calculate your Customer Acquisition Cost across channels and
+                campaigns.
+              </p>
+              <div class="space-y-4 mb-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Total Marketing Spend ($)</label
+                  >
+                  <input
+                    type="number"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    value="5000"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >New Customers Acquired</label
+                  >
+                  <input
+                    type="number"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    value="250"
+                  />
+                </div>
+                <div
+                  class="flex items-center justify-between mt-8 p-4 bg-green-50 rounded-lg border border-green-100"
+                >
+                  <span class="text-sm font-medium text-gray-700"
+                    >Your CAC:</span
+                  >
+                  <span class="text-2xl font-bold text-green-600 result-value"
+                    >$20.00</span
+                  >
+                </div>
+              </div>
+              <button
+                class="w-full bg-primary text-white px-4 py-3 !rounded-button font-medium hover:bg-opacity-90 whitespace-nowrap"
+              >
+                Calculate
+              </button>
+            </div>
+          </div>
+          <!-- Tool Card 2 -->
+          <div
+            class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group"
+          >
+            <div class="p-6">
+              <div
+                class="w-12 h-12 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mb-4"
+              >
+                <i class="ri-line-chart-line text-primary ri-lg"></i>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
+                ROAS Calculator
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Measure your Return On Ad Spend to optimize your marketing
+                budget.
+              </p>
+              <div class="space-y-4 mb-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Revenue from Ads ($)</label
+                  >
+                  <input
+                    type="number"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    value="15000"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Ad Spend ($)</label
+                  >
+                  <input
+                    type="number"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    value="5000"
+                  />
+                </div>
+                <div
+                  class="flex items-center justify-between mt-8 p-4 bg-blue-50 rounded-lg border border-blue-100"
+                >
+                  <span class="text-sm font-medium text-gray-700"
+                    >Your ROAS:</span
+                  >
+                  <span class="text-2xl font-bold text-blue-600 result-value"
+                    >3.0x</span
+                  >
+                </div>
+              </div>
+              <button
+                class="w-full bg-primary text-white px-4 py-3 !rounded-button font-medium hover:bg-opacity-90 whitespace-nowrap"
+              >
+                Calculate
+              </button>
+            </div>
+          </div>
+          <!-- Tool Card 3 -->
+          <div
+            class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group"
+          >
+            <div class="p-6">
+              <div
+                class="w-12 h-12 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mb-4"
+              >
+                <i class="ri-user-settings-line text-primary ri-lg"></i>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
+                Churn Forecast
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Predict customer churn rates and revenue impact over time.
+              </p>
+              <div class="space-y-4 mb-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Current Customers</label
+                  >
+                  <input
+                    type="number"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    value="1000"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Monthly Churn Rate (%)</label
+                  >
+                  <input
+                    type="number"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    value="5"
+                  />
+                </div>
+                <div
+                  class="flex items-center justify-between mt-8 p-4 bg-blue-50 rounded-lg border border-blue-100"
+                >
+                  <span class="text-sm font-medium text-gray-700"
+                    >Customers in 6 months:</span
+                  >
+                  <span class="text-2xl font-bold text-blue-600 result-value"
+                    >735</span
+                  >
+                </div>
+              </div>
+              <button
+                class="w-full bg-primary text-white px-4 py-3 !rounded-button font-medium hover:bg-opacity-90 whitespace-nowrap"
+              >
+                Calculate
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Media Corner -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center mb-10">
+          <div>
+            <h2 class="text-3xl font-bold text-gray-900">Media Corner</h2>
+            <p class="text-gray-600 mt-2">
+              Quick-hit 10-min growth talks and podcasts
+            </p>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="flex bg-gray-100 rounded-full p-1 shadow-sm">
+              <button
+                class="px-6 py-2 rounded-full bg-primary text-white shadow-md text-sm font-medium transition-all duration-300 hover:shadow-lg"
+              >
+                All
+              </button>
+              <button
+                class="px-6 py-2 rounded-full text-sm font-medium text-gray-600 hover:bg-white hover:shadow-md transition-all duration-300"
+              >
+                Podcasts
+              </button>
+              <button
+                class="px-6 py-2 rounded-full text-sm font-medium text-gray-600 hover:bg-white hover:shadow-md transition-all duration-300"
+              >
+                Videos
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Media Item 1 -->
+          <div
+            class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group cursor-pointer"
+          >
+            <div class="h-48 bg-gray-100 relative">
+              <img
+                src="https://readdy.ai/api/search-image?query=Marketing%20podcast%20recording%20studio%20with%20professional%20microphones%20and%20headphones%2C%20clean%20modern%20setting%20with%20purple%20lighting%20accents&width=600&height=400&seq=16&orientation=landscape"
+                alt="Podcast Episode"
+                class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              />
+              <div
+                class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300"
+              >
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div
+                    class="w-20 h-20 rounded-full bg-primary shadow-xl flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 border-4 border-white"
+                  >
+                    <i class="ri-play-fill text-white ri-3x"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-3 space-x-2">
+                <span
+                  class="text-xs font-medium text-white bg-indigo-500 px-3 py-1.5 rounded-full"
+                  >Podcast</span
+                >
+                <span
+                  class="flex items-center text-xs font-medium text-gray-500"
+                >
+                  <i class="ri-time-line mr-1"></i>
+                  10 min
+                </span>
+              </div>
+              <h3
+                class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors duration-300"
+              >
+                Why Most A/B Tests Fail (And How to Fix Them)
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Statistical significance, sample sizes, and the common pitfalls
+                of testing.
+              </p>
+              <div
+                class="flex items-center justify-between bg-gray-50 px-4 py-2.5 rounded-full shadow-sm"
+              >
+                <div class="flex items-center">
+                  <div
+                    class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden"
+                  >
+                    <i class="ri-user-fill text-primary"></i>
+                  </div>
+                  <span class="text-sm font-medium text-gray-700 ml-2"
+                    >Rebecca Martinez</span
+                  >
+                </div>
+                <div
+                  class="flex items-center text-gray-600 font-medium bg-white px-3 py-1 rounded-full shadow-sm"
+                >
+                  <i class="ri-headphone-line text-primary mr-2"></i>
+                  <span>4.2K listens</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Media Item 2 -->
+          <div
+            class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group"
+          >
+            <div class="h-48 bg-gray-100 relative">
+              <img
+                src="https://readdy.ai/api/search-image?query=Marketing%20video%20recording%20with%20professional%20camera%20setup%20and%20presenter%20discussing%20analytics%2C%20clean%20modern%20setting%20with%20purple%20lighting%20accents&width=600&height=400&seq=17&orientation=landscape"
+                alt="Video Episode"
+                class="w-full h-full object-cover object-top"
+              />
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div
+                  class="w-16 h-16 rounded-full bg-primary bg-opacity-90 flex items-center justify-center"
+                >
+                  <i class="ri-play-fill text-white ri-2x"></i>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-3">
+                <span
+                  class="text-xs font-medium text-white bg-red-500 px-2 py-1 rounded-full mr-2"
+                  >Video</span
+                >
+                <span class="text-xs font-medium text-gray-500">8 min</span>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
+                5 TikTok Ad Formats That Are Crushing It Right Now
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                The latest creative formats driving engagement and conversions
+                on TikTok.
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <div
+                    class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden mr-2"
+                  >
+                    <i class="ri-user-fill text-gray-500"></i>
+                  </div>
+                  <span class="text-sm text-gray-600">Daniel Kim</span>
+                </div>
+                <div class="flex items-center text-gray-500 text-sm">
+                  <i class="ri-eye-line mr-1"></i>
+                  <span>7.8K</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Media Item 3 -->
+          <div
+            class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group"
+          >
+            <div class="h-48 bg-gray-100 relative">
+              <img
+                src="https://readdy.ai/api/search-image?query=Marketing%20podcast%20interview%20with%20two%20professionals%20discussing%20email%20marketing%20strategies%2C%20clean%20modern%20setting%20with%20purple%20lighting%20accents&width=600&height=400&seq=18&orientation=landscape"
+                alt="Podcast Episode"
+                class="w-full h-full object-cover object-top"
+              />
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div
+                  class="w-16 h-16 rounded-full bg-primary bg-opacity-90 flex items-center justify-center"
+                >
+                  <i class="ri-play-fill text-white ri-2x"></i>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-3">
+                <span
+                  class="text-xs font-medium text-white bg-indigo-500 px-2 py-1 rounded-full mr-2"
+                  >Podcast</span
+                >
+                <span class="text-xs font-medium text-gray-500">12 min</span>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
+                The Email Sequence That Generated $250K in 30 Days
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Breaking down the psychology and copywriting behind a
+                high-converting email campaign.
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <div
+                    class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden mr-2"
+                  >
+                    <i class="ri-user-fill text-gray-500"></i>
+                  </div>
+                  <span class="text-sm text-gray-600">Olivia Thompson</span>
+                </div>
+                <div class="flex items-center text-gray-500 text-sm">
+                  <i class="ri-headphone-line mr-1"></i>
+                  <span>3.5K</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-12 text-center">
+          <button
+            class="border-2 border-gray-300 text-gray-700 px-10 py-4 !rounded-button text-lg font-medium hover:bg-gray-50 hover:border-primary transition-all duration-300 whitespace-nowrap shadow-sm"
+          >
+            Browse All Media
+            <i class="ri-arrow-right-line ml-2"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Newsletter Section -->
+    <section class="py-16 gradient-bg">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+            Get the Real Marketing Cheat Codes
+          </h2>
+          <p class="text-lg text-gray-700 mb-8">
+            Be the first to know when new tools drop. No fluff, just actionable
+            strategies that drive results.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+            <input
+              type="email"
+              class="flex-1 px-4 py-3 rounded-md border-none shadow-sm focus:outline-none focus:ring-2 focus:ring-primary"
+              placeholder="Enter your email address"
+            />
+            <button
+              class="bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-opacity-90 whitespace-nowrap flex items-center justify-center"
+            >
+              <span>Subscribe</span>
+              <i class="ri-arrow-right-line ml-2"></i>
+            </button>
+          </div>
+          <div class="mt-6 flex items-center justify-center">
+            <label
+              class="custom-checkbox flex items-center text-sm text-gray-600"
+            >
+              <input type="checkbox" checked />
+              <span class="checkmark"></span>
+              <span class="ml-7"
+                >I agree to receive marketing emails. You can unsubscribe
+                anytime.</span
+              >
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div>
+            <h1 class="text-2xl font-['Pacifico'] text-white mb-4">logo</h1>
+            <p class="text-gray-400 mb-6">
+              The ultimate hub for growth marketing professionals. Blending
+              creativity, analytics, and psychology into actionable strategies.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+              >
+                <i class="ri-twitter-x-line"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+              >
+                <i class="ri-linkedin-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+              >
+                <i class="ri-instagram-line"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+              >
+                <i class="ri-youtube-line"></i>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Resources</h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Playbooks</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Case Studies</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Creative Lab</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Growth Vault</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Podcasts & Videos</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Company</h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Team</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Careers</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Legal</h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Terms of Service</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Cookie Policy</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >GDPR Compliance</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-gray-400 text-sm mb-4 md:mb-0">
+            © 2025 Growth Marketing Hub. All rights reserved.
+          </p>
+          <div class="flex items-center space-x-4">
+            <div class="flex items-center">
+              <i class="ri-visa-line ri-lg mr-2"></i>
+              <i class="ri-mastercard-line ri-lg mr-2"></i>
+              <i class="ri-paypal-line ri-lg mr-2"></i>
+              <i class="ri-apple-fill ri-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <style>
+      @keyframes calculate {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(0.95); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+      }
+      @keyframes resultGlow {
+      0% { box-shadow: 0 0 0 rgba(37, 99, 235, 0); }
+      50% { box-shadow: 0 0 15px rgba(37, 99, 235, 0.2); }
+      100% { box-shadow: 0 0 0 rgba(37, 99, 235, 0); }
+      }
+      .calculating {
+      animation: calculate 0.5s ease-in-out;
+      }
+      .result-flash {
+      animation: resultGlow 0.8s ease-in-out;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Calculator Animation
+        const calculatorButtons = document.querySelectorAll(".bg-primary");
+        calculatorButtons.forEach((button) => {
+          button.addEventListener("click", function (e) {
+            const card = this.closest(".card-hover");
+            const resultValue = card.querySelector(".result-value");
+            const resultContainer = resultValue.parentElement;
+            this.classList.add("calculating");
+            setTimeout(() => {
+              resultContainer.classList.add("result-flash");
+              this.classList.remove("calculating");
+              setTimeout(() => {
+                resultContainer.classList.remove("result-flash");
+              }, 800);
+            }, 500);
+          });
+        });
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById("darkModeToggle");
+        darkModeToggle.addEventListener("change", function () {
+          if (this.checked) {
+            document.body.classList.add("dark-mode");
+          } else {
+            document.body.classList.remove("dark-mode");
+          }
+        });
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        // Case Studies Carousel
+        const caseStudiesContainer = document.getElementById("caseStudiesContainer");
+        const prevCaseBtn = document.getElementById("prevCase");
+        const nextCaseBtn = document.getElementById("nextCase");
+        let scrollAmount = 0;
+        const scrollStep = 400;
+        const cards = document.querySelectorAll(".card-hover");
+        cards.forEach((card) => {
+          card.addEventListener("click", function (e) {
+            if (!e.target.closest("button")) {
+              window.location.href = this.getAttribute("href");
+            }
+          });
+        });
+        nextCaseBtn.addEventListener("click", function () {
+          scrollAmount += scrollStep;
+          if (
+            scrollAmount >
+            caseStudiesContainer.scrollWidth - caseStudiesContainer.clientWidth
+          ) {
+            scrollAmount =
+              caseStudiesContainer.scrollWidth - caseStudiesContainer.clientWidth;
+          }
+          caseStudiesContainer.scroll({
+            left: scrollAmount,
+            behavior: "smooth",
+          });
+        });
+        prevCaseBtn.addEventListener("click", function () {
+          scrollAmount -= scrollStep;
+          if (scrollAmount < 0) {
+            scrollAmount = 0;
+          }
+          caseStudiesContainer.scroll({
+            left: scrollAmount,
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
