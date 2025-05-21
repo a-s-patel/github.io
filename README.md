@@ -15,4 +15,4 @@ Built for marketers who love blending **data, creativity, and caffeine** to driv
 ## 🌍 See It Live
 
 Check it out here:  
-👉 [www.proofoverhype.click](www.proofoverhype.click)
+👉 www.proofoverhype.click
