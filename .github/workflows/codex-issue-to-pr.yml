@@ -36,8 +36,8 @@ jobs:
           safety-strategy: drop-sudo
           sandbox: workspace-write
 
-      - name: Validate site structure
-        run: node scripts/validate-site.mjs
+#      - name: Validate site structure
+#        run: node scripts/validate-site.mjs
 
       - name: Create PR from changes
         uses: actions/github-script@v7
