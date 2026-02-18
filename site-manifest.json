@@ -10,12 +10,6 @@
   ],
   "pages": [
     "/",
-    "/about/",
-    "/playbooks/",
-    "/case-studies/",
-    "/creative-lab/",
-    "/growth-vault/",
-    "/media/",
-    "/test/"
+    "/about/"
   ]
 }
