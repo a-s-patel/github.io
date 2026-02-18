@@ -18,16 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Dark Mode Toggle
-  const darkModeToggle = document.getElementById("darkModeToggle");
-  darkModeToggle.addEventListener("change", function () {
-    if (this.checked) {
-      document.body.classList.add("dark-mode");
-    } else {
-      document.body.classList.remove("dark-mode");
-    }
-  });
-
   // Case Studies Carousel
   const caseStudiesContainer = document.getElementById("caseStudiesContainer");
   const prevCaseBtn = document.getElementById("prevCase");
