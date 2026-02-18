@@ -1,0 +1,79 @@
+name: Codex - Issue to PR
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  codex_issue_to_pr:
+    if: github.event.label.name == 'codex-run'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: read
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
+      - name: Run Codex on the issue
+        id: run_codex
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt: |
+            ISSUE TITLE:
+            ${{ github.event.issue.title }}
+
+            ISSUE BODY:
+            ${{ github.event.issue.body }}
+
+            ---
+            Follow the repository rules in:
+            .github/codex/prompts/issue_to_pr.md
+          safety-strategy: drop-sudo
+          sandbox: workspace-write
+
+      - name: Create PR from changes
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const { execSync } = require('child_process');
+
+            // Create a new branch name
+            const issueNumber = context.payload.issue.number;
+            const branch = `codex/issue-${issueNumber}`;
+
+            // Configure git
+            execSync(`git config user.name "codex-bot"`);
+            execSync(`git config user.email "codex-bot@users.noreply.github.com"`);
+
+            // Create branch
+            execSync(`git checkout -b ${branch}`);
+
+            // If no changes, stop
+            const status = execSync(`git status --porcelain`).toString().trim();
+            if (!status) {
+              core.notice("No file changes detected; skipping PR creation.");
+              return;
+            }
+
+            // Commit + push
+            execSync(`git add -A`);
+            execSync(`git commit -m "POH: Issue #${issueNumber}"`);
+            execSync(`git push --set-upstream origin ${branch}`);
+
+            // Open PR
+            const pr = await github.rest.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `POH: ${context.payload.issue.title}`,
+              head: branch,
+              base: "main",
+              body: `Automated PR for Issue #${issueNumber}.\n\nCodex output:\n\n${{ steps.run_codex.outputs.final-message }}`
+            });
+
+            core.notice(`PR created: ${pr.data.html_url}`);
