@@ -8,10 +8,6 @@ body {
   background: linear-gradient(135deg, #f9f7ff 0%, #e6e0ff 100%);
 }
 
-.card-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px -5px rgba(138, 111, 223, 0.1);
-}
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
@@ -70,81 +66,3 @@ input[type="number"]::-webkit-outer-spin-button {
   transform: rotate(45deg);
 }
 
-.toggle-switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 24px;
-}
-
-.toggle-switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.toggle-slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #e2e8f0;
-  transition: .4s;
-  border-radius: 34px;
-}
-
-.toggle-slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-}
-
-input:checked + .toggle-slider {
-  background-color: #8A6FDF;
-}
-
-input:checked + .toggle-slider:before {
-  transform: translateX(26px);
-}
-
-.progress-bar {
-  height: 8px;
-  background-color: #e2e8f0;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(to right, #8A6FDF, #9d87e5);
-  border-radius: 4px;
-}
-
-/* Animations */
-@keyframes calculate {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(0.95); opacity: 0.8; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes resultGlow {
-  0% { box-shadow: 0 0 0 rgba(37, 99, 235, 0); }
-  50% { box-shadow: 0 0 15px rgba(37, 99, 235, 0.2); }
-  100% { box-shadow: 0 0 0 rgba(37, 99, 235, 0); }
-}
-
-.calculating {
-  animation: calculate 0.5s ease-in-out;
-}
-
-.result-flash {
-  animation: resultGlow 0.8s ease-in-out;
-}

@@ -60,117 +60,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
 <!-- Your own -->
     <link rel="stylesheet" href="css/style.css" />
-    <style>
-      :where([class^="ri-"])::before { content: "\f3c2"; }
-      body {
-      font-family: 'Inter', sans-serif;
-      }
-      .gradient-bg {
-      background: linear-gradient(135deg, #f9f7ff 0%, #e6e0ff 100%);
-      }
-      .card-hover:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px -5px rgba(138, 111, 223, 0.1);
-      }
-      input[type="number"]::-webkit-inner-spin-button,
-      input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-      }
-      .custom-checkbox {
-      position: relative;
-      cursor: pointer;
-      }
-      .custom-checkbox input {
-      position: absolute;
-      opacity: 0;
-      cursor: pointer;
-      }
-      .checkmark {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 20px;
-      width: 20px;
-      background-color: #fff;
-      border: 2px solid #e2e8f0;
-      border-radius: 4px;
-      }
-      .custom-checkbox:hover input ~ .checkmark {
-      border-color: #8A6FDF;
-      }
-      .custom-checkbox input:checked ~ .checkmark {
-      background-color: #8A6FDF;
-      border-color: #8A6FDF;
-      }
-      .checkmark:after {
-      content: "";
-      position: absolute;
-      display: none;
-      }
-      .custom-checkbox input:checked ~ .checkmark:after {
-      display: block;
-      }
-      .custom-checkbox .checkmark:after {
-      left: 6px;
-      top: 2px;
-      width: 5px;
-      height: 10px;
-      border: solid white;
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-      }
-      .toggle-switch {
-      position: relative;
-      display: inline-block;
-      width: 50px;
-      height: 24px;
-      }
-      .toggle-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-      }
-      .toggle-slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #e2e8f0;
-      transition: .4s;
-      border-radius: 34px;
-      }
-      .toggle-slider:before {
-      position: absolute;
-      content: "";
-      height: 18px;
-      width: 18px;
-      left: 3px;
-      bottom: 3px;
-      background-color: white;
-      transition: .4s;
-      border-radius: 50%;
-      }
-      input:checked + .toggle-slider {
-      background-color: #8A6FDF;
-      }
-      input:checked + .toggle-slider:before {
-      transform: translateX(26px);
-      }
-      .progress-bar {
-      height: 8px;
-      background-color: #e2e8f0;
-      border-radius: 4px;
-      overflow: hidden;
-      }
-      .progress-fill {
-      height: 100%;
-      background: linear-gradient(to right, #8A6FDF, #9d87e5);
-      border-radius: 4px;
-      }
-    </style>
   </head>
   <body class="bg-white min-h-screen">
     <!-- Header & Navigation -->
@@ -179,7 +68,7 @@
         class="container mx-auto px-4 py-4 flex items-center justify-between"
       >
         <div class="flex items-center space-x-2">
-          <h1 class="text-2xl font-['Pacifico'] text-primary">logo</h1>
+          <h1 class="text-2xl font-['Pacifico'] text-primary">Proof Over Hype</h1>
         </div>
         <nav class="hidden md:flex items-center space-x-8">
           <a
@@ -208,24 +97,8 @@
             >Media</a
           >
         </nav>
-        <div class="flex items-center space-x-2">
-          <label class="toggle-switch">
-            <input type="checkbox" id="darkModeToggle" />
-            <span class="toggle-slider"></span>
-          </label>
-          <button
-            class="text-gray-700 hover:text-primary border border-gray-300 px-4 py-2 !rounded-button font-medium"
-          >
-            Sign In
-          </button>
-          <button
-            class="bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90"
-          >
-            Sign Up
-          </button>
-          <div class="md:hidden w-8 h-8 flex items-center justify-center">
-            <i class="ri-menu-line ri-lg"></i>
-          </div>
+        <div class="md:hidden w-8 h-8 flex items-center justify-center">
+          <i class="ri-menu-line ri-lg"></i>
         </div>
       </div>
     </header>
@@ -262,28 +135,6 @@
               <span>Estimate Your CAC</span>
             </button>
           </div>
-          <div class="flex items-center gap-4">
-            <div class="flex -space-x-2">
-              <div
-                class="w-10 h-10 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center overflow-hidden"
-              >
-                <i class="ri-user-fill ri-lg text-gray-500"></i>
-              </div>
-              <div
-                class="w-10 h-10 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center overflow-hidden"
-              >
-                <i class="ri-user-fill ri-lg text-gray-500"></i>
-              </div>
-              <div
-                class="w-10 h-10 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center overflow-hidden"
-              >
-                <i class="ri-user-fill ri-lg text-gray-500"></i>
-              </div>
-            </div>
-            <p class="text-sm text-gray-100 font-medium">
-              Join 5,000+ growth marketers already crushing it
-            </p>
-          </div>
         </div>
       </div>
     </section>
@@ -296,24 +147,6 @@
             <p class="text-gray-600 mt-2">
               Templates and frameworks you can actually use
             </p>
-          </div>
-          <div class="flex items-center gap-3">
-            <div
-              class="bg-white shadow-sm rounded-full px-4 py-2 flex items-center"
-            >
-              <span class="text-sm font-medium text-gray-700 mr-2"
-                >Your Level:</span
-              >
-              <span class="text-sm font-semibold text-primary"
-                >Growth Hacker</span
-              >
-            </div>
-            <div
-              class="bg-white shadow-sm rounded-full px-4 py-2 flex items-center"
-            >
-              <i class="ri-award-fill ri-lg text-yellow-500 mr-2"></i>
-              <span class="text-sm font-medium">450 pts</span>
-            </div>
           </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -350,15 +183,6 @@
                 Master the art of scroll-stopping hooks that convert on Facebook
                 and Instagram.
               </p>
-              <div class="mb-4">
-                <div class="flex justify-between text-xs text-gray-500 mb-1">
-                  <span>Progress</span>
-                  <span>75%</span>
-                </div>
-                <div class="progress-bar">
-                  <div class="progress-fill" style="width: 75%"></div>
-                </div>
-              </div>
               <div class="flex justify-between items-center">
                 <div class="flex items-center">
                   <div
@@ -407,15 +231,6 @@
                 Optimize your videos to rank higher and get discovered by your
                 target audience.
               </p>
-              <div class="mb-4">
-                <div class="flex justify-between text-xs text-gray-500 mb-1">
-                  <span>Progress</span>
-                  <span>10%</span>
-                </div>
-                <div class="progress-bar">
-                  <div class="progress-fill" style="width: 10%"></div>
-                </div>
-              </div>
               <div class="flex justify-between items-center">
                 <div class="flex items-center">
                   <div
@@ -439,7 +254,7 @@
           >
             <div class="h-48 bg-gray-100 relative">
               <img
-                src="images/Funnel_Tracking_Outlines.jpg""
+                src="images/Funnel_Tracking_Outlines.jpg"
                 alt="Funnel Tracking Outlines"
                 class="w-full h-full object-cover object-top"
               />
@@ -466,15 +281,6 @@
                 Track every step of your customer journey with these
                 ready-to-use templates.
               </p>
-              <div class="mb-4">
-                <div class="flex justify-between text-xs text-gray-500 mb-1">
-                  <span>Progress</span>
-                  <span>0%</span>
-                </div>
-                <div class="progress-bar">
-                  <div class="progress-fill" style="width: 0%"></div>
-                </div>
-              </div>
               <div class="flex justify-between items-center">
                 <div class="flex items-center">
                   <div
@@ -509,9 +315,8 @@
         <div class="flex justify-between items-center mb-12">
           <div>
             <h2 class="text-2xl font-bold text-gray-900">
-              Growth Experiment of the Month
+              Featured Growth Experiment
             </h2>
-            <p class="text-gray-600 mt-3 text-sm">April 28, 2025</p>
           </div>
           <div>
             <button
@@ -609,12 +414,6 @@
                 >
                   <i class="ri-flask-line mr-2"></i>
                   Try This Experiment
-                </button>
-                <button
-                  class="border border-gray-300 text-gray-700 px-6 py-3 !rounded-button font-medium hover:bg-gray-50 whitespace-nowrap flex items-center"
-                >
-                  <i class="ri-bookmark-line mr-2"></i>
-                  Save
                 </button>
               </div>
             </div>
@@ -734,24 +533,10 @@
               Real-world breakdowns of experiments, wins, and fails
             </p>
           </div>
-          <div class="flex items-center -mr-4">
-            <button
-              class="w-14 h-14 rounded-full bg-white shadow-sm flex items-center justify-center hover:bg-gray-50 transition-colors"
-              id="prevCase"
-            >
-              <i class="ri-arrow-left-s-line text-gray-600 ri-xl"></i>
-            </button>
-            <button
-              class="w-14 h-14 rounded-full bg-white shadow-sm flex items-center justify-center hover:bg-gray-50 transition-colors ml-2"
-              id="nextCase"
-            >
-              <i class="ri-arrow-right-s-line text-gray-600 ri-xl"></i>
-            </button>
-          </div>
         </div>
         <div
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          id="caseStudiesContainer"
+         
         >
           <!-- Case Study 1 -->
           <a
@@ -759,7 +544,7 @@
             class="block bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group cursor-pointer"
           >
             <div class="h-48 bg-gray-100">
-              <img
+              <img loading="lazy"
                 src="images/Ecommerce_Website_Laptop.jpg"
                 alt="E-commerce Conversion Rate Optimization"
                 class="w-full h-full object-cover object-top"
@@ -784,14 +569,6 @@
                 social proof and urgency.
               </p>
               <div class="flex justify-between items-center">
-                <div class="flex items-center">
-                  <div
-                    class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden mr-2"
-                  >
-                    <i class="ri-user-fill text-gray-500"></i>
-                  </div>
-                  <span class="text-sm text-gray-600">Emma Richardson</span>
-                </div>
                 <span
                   class="text-primary group-hover:text-primary-dark font-medium text-sm flex items-center transition-colors"
                 >
@@ -806,7 +583,7 @@
             class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group"
           >
             <div class="h-48 bg-gray-100">
-              <img
+              <img loading="lazy"
                 src="images/SaaS_Product_Dashboard.jpg"
                 alt="SaaS Onboarding Optimization"
                 class="w-full h-full object-cover object-top"
@@ -828,14 +605,6 @@
                 progress tracking.
               </p>
               <div class="flex justify-between items-center">
-                <div class="flex items-center">
-                  <div
-                    class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden mr-2"
-                  >
-                    <i class="ri-user-fill text-gray-500"></i>
-                  </div>
-                  <span class="text-sm text-gray-600">Michael Chen</span>
-                </div>
                 <button
                   class="text-primary hover:text-primary-dark font-medium text-sm flex items-center"
                 >
@@ -850,7 +619,7 @@
             class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group"
           >
             <div class="h-48 bg-gray-100">
-              <img
+              <img loading="lazy"
                 src="images/Mobile_App_Marketing_Campaign.jpg"
                 alt="Mobile App UA Failure"
                 class="w-full h-full object-cover object-top"
@@ -872,14 +641,6 @@
                 misalignment.
               </p>
               <div class="flex justify-between items-center">
-                <div class="flex items-center">
-                  <div
-                    class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden mr-2"
-                  >
-                    <i class="ri-user-fill text-gray-500"></i>
-                  </div>
-                  <span class="text-sm text-gray-600">James Wilson</span>
-                </div>
                 <button
                   class="text-primary hover:text-primary-dark font-medium text-sm flex items-center"
                 >
@@ -910,35 +671,12 @@
               Inspiration gallery for ads, hooks, CTAs, and landing pages
             </p>
           </div>
-          <div class="flex items-center space-x-4">
-            <div class="flex bg-gray-100 rounded-full p-1">
-              <button
-                class="px-4 py-2 rounded-full bg-primary text-white shadow-sm text-sm font-medium"
-              >
-                All
-              </button>
-              <button
-                class="px-4 py-2 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
-              >
-                Ads
-              </button>
-              <button
-                class="px-4 py-2 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
-              >
-                Landing Pages
-              </button>
-              <button
-                class="px-4 py-2 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
-              >
-                Emails
-              </button>
-            </div>
           </div>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           <!-- Creative Item 1 -->
           <div class="relative group overflow-hidden rounded-lg shadow-sm">
-            <img
+            <img loading="lazy"
               src="images/Facebook_Creative_Fitness_App.jpg"
               alt="Facebook Ad Creative"
               class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105 filter blur-[0.5px]"
@@ -969,7 +707,7 @@
           </div>
           <!-- Creative Item 2 -->
           <div class="relative group overflow-hidden rounded-lg shadow-sm">
-            <img
+            <img loading="lazy"
               src="images/Email_Newsletter_Design.jpg"
               alt="Email Newsletter Design"
               class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105 filter blur-[0.5px]"
@@ -1000,7 +738,7 @@
           </div>
           <!-- Creative Item 3 -->
           <div class="relative group overflow-hidden rounded-lg shadow-sm">
-            <img
+            <img loading="lazy"
               src="images/Landing_Page_Design.jpg"
               alt="Landing Page Design"
               class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105 filter blur-[0.5px]"
@@ -1031,7 +769,7 @@
           </div>
           <!-- Creative Item 4 -->
           <div class="relative group overflow-hidden rounded-lg shadow-sm">
-            <img
+            <img loading="lazy"
               src="images/Instagram_Creative.jpg"
               alt="Instagram Ad Creative"
               class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105 filter blur-[0.5px]"
@@ -1062,7 +800,7 @@
           </div>
           <!-- Creative Item 5 -->
           <div class="relative group overflow-hidden rounded-lg shadow-sm">
-            <img
+            <img loading="lazy"
               src="images/Google_Search_Creative.jpg"
               alt="Google Search Ad"
               class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105"
@@ -1093,7 +831,7 @@
           </div>
           <!-- Creative Item 6 -->
           <div class="relative group overflow-hidden rounded-lg shadow-sm">
-            <img
+            <img loading="lazy"
               src="images/Email_Welcome_Sequence.jpg"
               alt="Email Welcome Sequence"
               class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105"
@@ -1124,7 +862,7 @@
           </div>
           <!-- Creative Item 7 -->
           <div class="relative group overflow-hidden rounded-lg shadow-sm">
-            <img
+            <img loading="lazy"
               src="images/YouTube_Video_Thumbnail.jpg"
               alt="YouTube Thumbnail"
               class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105"
@@ -1157,7 +895,7 @@
           </div>
           <!-- Creative Item 8 -->
           <div class="relative group overflow-hidden rounded-lg shadow-sm">
-            <img
+            <img loading="lazy"
               src="images/Product_Page_Design.jpg"
               alt="Product Page Design"
               class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105"
@@ -1294,7 +1032,7 @@
               <div class="space-y-4 mb-6">
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-2"
-                    >Revenue from Ads ($)</label
+                    >Revenue from Campaigns ($)</label
                   >
                   <input
                     type="number"
@@ -1395,27 +1133,8 @@
           <div>
             <h2 class="text-3xl font-bold text-gray-900">Media Corner</h2>
             <p class="text-gray-600 mt-2">
-              Quick-hit 10-min growth talks and podcasts
+              Quick-hit 10-min growth talks and interviews
             </p>
-          </div>
-          <div class="flex items-center space-x-4">
-            <div class="flex bg-gray-100 rounded-full p-1 shadow-sm">
-              <button
-                class="px-6 py-2 rounded-full bg-primary text-white shadow-md text-sm font-medium transition-all duration-300 hover:shadow-lg"
-              >
-                All
-              </button>
-              <button
-                class="px-6 py-2 rounded-full text-sm font-medium text-gray-600 hover:bg-white hover:shadow-md transition-all duration-300"
-              >
-                Podcasts
-              </button>
-              <button
-                class="px-6 py-2 rounded-full text-sm font-medium text-gray-600 hover:bg-white hover:shadow-md transition-all duration-300"
-              >
-                Videos
-              </button>
-            </div>
           </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -1424,7 +1143,7 @@
             class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group cursor-pointer"
           >
             <div class="h-48 bg-gray-100 relative">
-              <img
+              <img loading="lazy"
                 src="images/Marketing_Podcast_Recording.jpg"
                 alt="Podcast Episode"
                 class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
@@ -1466,16 +1185,6 @@
               <div
                 class="flex items-center justify-between bg-gray-50 px-4 py-2.5 rounded-full shadow-sm"
               >
-                <div class="flex items-center">
-                  <div
-                    class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden"
-                  >
-                    <i class="ri-user-fill text-primary"></i>
-                  </div>
-                  <span class="text-sm font-medium text-gray-700 ml-2"
-                    >Rebecca Martinez</span
-                  >
-                </div>
                 <div
                   class="flex items-center text-gray-600 font-medium bg-white px-3 py-1 rounded-full shadow-sm"
                 >
@@ -1490,7 +1199,7 @@
             class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group"
           >
             <div class="h-48 bg-gray-100 relative">
-              <img
+              <img loading="lazy"
                 src="images/Marketing_Video_Recording.jpg"
                 alt="Video Episode"
                 class="w-full h-full object-cover object-top"
@@ -1519,14 +1228,6 @@
                 on TikTok.
               </p>
               <div class="flex justify-between items-center">
-                <div class="flex items-center">
-                  <div
-                    class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden mr-2"
-                  >
-                    <i class="ri-user-fill text-gray-500"></i>
-                  </div>
-                  <span class="text-sm text-gray-600">Daniel Kim</span>
-                </div>
                 <div class="flex items-center text-gray-500 text-sm">
                   <i class="ri-eye-line mr-1"></i>
                   <span>7.8K</span>
@@ -1539,7 +1240,7 @@
             class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group"
           >
             <div class="h-48 bg-gray-100 relative">
-              <img
+              <img loading="lazy"
                 src="images/Marketing_Podcast_Interview.jpg"
                 alt="Podcast Episode"
                 class="w-full h-full object-cover object-top"
@@ -1568,14 +1269,6 @@
                 high-converting email campaign.
               </p>
               <div class="flex justify-between items-center">
-                <div class="flex items-center">
-                  <div
-                    class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden mr-2"
-                  >
-                    <i class="ri-user-fill text-gray-500"></i>
-                  </div>
-                  <span class="text-sm text-gray-600">Olivia Thompson</span>
-                </div>
                 <div class="flex items-center text-gray-500 text-sm">
                   <i class="ri-headphone-line mr-1"></i>
                   <span>3.5K</span>
@@ -1638,7 +1331,7 @@
       <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h1 class="text-2xl font-['Pacifico'] text-white mb-4">logo</h1>
+            <h1 class="text-2xl font-['Pacifico'] text-white mb-4">Proof Over Hype</h1>
             <p class="text-gray-400 mb-6">
               The ultimate hub for growth marketing professionals. Blending
               creativity, analytics, and psychology into actionable strategies.
@@ -1705,7 +1398,7 @@
                 <a
                   href="#"
                   class="text-gray-400 hover:text-white transition-colors"
-                  >Podcasts & Videos</a
+                  >Talks & Interviews</a
                 >
               </li>
             </ul>
@@ -1788,108 +1481,10 @@
           class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center"
         >
           <p class="text-gray-400 text-sm mb-4 md:mb-0">
-            © 2025 Growth Marketing Hub. All rights reserved.
+            © Proof Over Hype. All rights reserved.
           </p>
-          <div class="flex items-center space-x-4">
-            <div class="flex items-center">
-              <i class="ri-visa-line ri-lg mr-2"></i>
-              <i class="ri-mastercard-line ri-lg mr-2"></i>
-              <i class="ri-paypal-line ri-lg mr-2"></i>
-              <i class="ri-apple-fill ri-lg"></i>
-            </div>
-          </div>
         </div>
       </div>
     </footer>
-    <style>
-      @keyframes calculate {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(0.95); opacity: 0.8; }
-      100% { transform: scale(1); opacity: 1; }
-      }
-      @keyframes resultGlow {
-      0% { box-shadow: 0 0 0 rgba(37, 99, 235, 0); }
-      50% { box-shadow: 0 0 15px rgba(37, 99, 235, 0.2); }
-      100% { box-shadow: 0 0 0 rgba(37, 99, 235, 0); }
-      }
-      .calculating {
-      animation: calculate 0.5s ease-in-out;
-      }
-      .result-flash {
-      animation: resultGlow 0.8s ease-in-out;
-      }
-    </style>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Calculator Animation
-        const calculatorButtons = document.querySelectorAll(".bg-primary");
-        calculatorButtons.forEach((button) => {
-          button.addEventListener("click", function (e) {
-            const card = this.closest(".card-hover");
-            const resultValue = card.querySelector(".result-value");
-            const resultContainer = resultValue.parentElement;
-            this.classList.add("calculating");
-            setTimeout(() => {
-              resultContainer.classList.add("result-flash");
-              this.classList.remove("calculating");
-              setTimeout(() => {
-                resultContainer.classList.remove("result-flash");
-              }, 800);
-            }, 500);
-          });
-        });
-        // Dark Mode Toggle
-        const darkModeToggle = document.getElementById("darkModeToggle");
-        darkModeToggle.addEventListener("change", function () {
-          if (this.checked) {
-            document.body.classList.add("dark-mode");
-          } else {
-            document.body.classList.remove("dark-mode");
-          }
-        });
-      });
-      document.addEventListener("DOMContentLoaded", function () {
-        // Case Studies Carousel
-        const caseStudiesContainer = document.getElementById("caseStudiesContainer");
-        const prevCaseBtn = document.getElementById("prevCase");
-        const nextCaseBtn = document.getElementById("nextCase");
-        let scrollAmount = 0;
-        const scrollStep = 400;
-        const cards = document.querySelectorAll(".card-hover");
-        cards.forEach((card) => {
-          card.addEventListener("click", function (e) {
-            if (!e.target.closest("button")) {
-              window.location.href = this.getAttribute("href");
-            }
-          });
-        });
-        nextCaseBtn.addEventListener("click", function () {
-          scrollAmount += scrollStep;
-          if (
-            scrollAmount >
-            caseStudiesContainer.scrollWidth - caseStudiesContainer.clientWidth
-          ) {
-            scrollAmount =
-              caseStudiesContainer.scrollWidth - caseStudiesContainer.clientWidth;
-          }
-          caseStudiesContainer.scroll({
-            left: scrollAmount,
-            behavior: "smooth",
-          });
-        });
-        prevCaseBtn.addEventListener("click", function () {
-          scrollAmount -= scrollStep;
-          if (scrollAmount < 0) {
-            scrollAmount = 0;
-          }
-          caseStudiesContainer.scroll({
-            left: scrollAmount,
-            behavior: "smooth",
-          });
-        });
-      });
-    </script>
-<!-- JS Script (at the bottom before </body>) -->
-    <script src="js/script.js"></script>
   </body>
 </html>
