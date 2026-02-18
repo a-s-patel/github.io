@@ -38,26 +38,27 @@ jobs:
 
       - name: Create PR from changes
         uses: actions/github-script@v7
+        env:
+          CODEX_FINAL_MESSAGE: ${{ steps.run_codex.outputs.final-message }}
         with:
           github-token: ${{ github.token }}
           script: |
             const { execSync } = require('child_process');
 
-            // Create a new branch name
             const issueNumber = context.payload.issue.number;
             const branch = `codex/issue-${issueNumber}`;
 
-            // Configure git
+            // Configure git identity for commits made by the workflow
             execSync(`git config user.name "codex-bot"`);
             execSync(`git config user.email "codex-bot@users.noreply.github.com"`);
 
-            // Create branch
+            // Create a new branch
             execSync(`git checkout -b ${branch}`);
 
-            // If no changes, stop
+            // If no changes, stop (avoid creating empty PRs)
             const status = execSync(`git status --porcelain`).toString().trim();
             if (!status) {
-              core.notice("No file changes detected; skipping PR creation.");
+              console.log("No file changes detected; skipping PR creation.");
               return;
             }
 
@@ -66,14 +67,23 @@ jobs:
             execSync(`git commit -m "POH: Issue #${issueNumber}"`);
             execSync(`git push --set-upstream origin ${branch}`);
 
-            // Open PR
+            // Read Codex output safely from env (prevents breaking the JS string)
+            let finalMessage = process.env.CODEX_FINAL_MESSAGE || "";
+            // Prevent triple-backtick fences from breaking Markdown rendering in PR body
+            finalMessage = finalMessage.replace(/```/g, "`\u200b`\u200b`");
+
+            const prBody =
+              `Automated PR for Issue #${issueNumber}.\n\n` +
+              `## Codex output\n` +
+              `\n\`\`\`\n${finalMessage}\n\`\`\`\n`;
+
             const pr = await github.rest.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: `POH: ${context.payload.issue.title}`,
               head: branch,
               base: "main",
-              body: `Automated PR for Issue #${issueNumber}.\n\nCodex output:\n\n${{ steps.run_codex.outputs.final-message }}`
+              body: prBody
             });
 
-            core.notice(`PR created: ${pr.data.html_url}`);
+            console.log(`PR created: ${pr.data.html_url}`);
