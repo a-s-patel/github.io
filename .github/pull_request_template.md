@@ -6,6 +6,11 @@ What did this PR change? (1–3 sentences)
   - Task #: ___
   - Task name: ___
 
+# Checks (must be true)
+- [ ] Uses folder routing (e.g., /playbooks/index.html → /playbooks/)
+- [ ] Uses root-relative links (e.g., href="/playbooks/"), not relative paths
+- [ ] No unrelated changes outside the scoped task
+
 # What changed
 - Files added/updated:
   - 
