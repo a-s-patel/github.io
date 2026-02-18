@@ -174,3 +174,24 @@ input[type="number"]::-webkit-outer-spin-button {
 .hero-subheadline {
   font-style: italic;
 }
+
+.hero-heading {
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+button,
+.hero-button {
+  min-height: 44px;
+}
+
+@media (max-width: 640px) {
+  .hero-button {
+    width: 100%;
+  }
+
+  .hero-subheadline {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
