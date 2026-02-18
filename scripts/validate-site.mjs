@@ -21,7 +21,6 @@ function listHtmlFiles(dir) {
   for (const item of items) {
     const full = path.join(dir, item.name);
     if (item.isDirectory()) {
-      // Skip git + node-ish dirs if ever added
       if (item.name === ".git" || item.name === "node_modules") continue;
       out.push(...listHtmlFiles(full));
     } else if (item.isFile() && item.name.endsWith(".html")) {
@@ -31,8 +30,40 @@ function listHtmlFiles(dir) {
   return out;
 }
 
-function isRootRelativeLink(href) {
-  return href.startsWith("/");
+function normalizeUrl(u) {
+  // Normalize common sitemap differences:
+  // - trim whitespace
+  // - ensure no trailing spaces/newlines
+  // - ensure path ends with "/" for folder routes (except root)
+  // - keep scheme + host exactly as provided in manifest.baseUrl
+  const s = String(u || "").trim();
+  if (!s) return s;
+
+  try {
+    const url = new URL(s);
+    // Normalize pathname: ensure trailing slash unless it's root or has a file extension
+    const hasExt = /\.[a-z0-9]+$/i.test(url.pathname);
+    if (!hasExt && url.pathname !== "/" && !url.pathname.endsWith("/")) {
+      url.pathname = url.pathname + "/";
+    }
+    // Remove default port and normalize
+    url.hash = "";
+    return url.toString();
+  } catch {
+    // If not a valid absolute URL, just return trimmed
+    return s;
+  }
+}
+
+function extractSitemapLocs(xml) {
+  // Extract all <loc>...</loc> values (handles whitespace/newlines)
+  const locs = [];
+  const re = /<loc>\s*([^<]+?)\s*<\/loc>/gi;
+  let m;
+  while ((m = re.exec(xml)) !== null) {
+    locs.push(m[1]);
+  }
+  return locs;
 }
 
 function main() {
@@ -43,51 +74,61 @@ function main() {
 
   const manifest = JSON.parse(readFile(manifestPath));
 
-  // Basic manifest sanity
   if (!manifest.baseUrl) fail("site-manifest.json missing baseUrl");
   if (!Array.isArray(manifest.sections)) fail("site-manifest.json sections must be an array");
   if (!Array.isArray(manifest.pages)) fail("site-manifest.json pages must be an array");
 
-  // Ensure required partials exist
+  // Required partials
   const headerPartial = path.join(repoRoot, "partials", "header.html");
   if (!exists(headerPartial)) fail("Missing partials/header.html");
 
   const includeScript = path.join(repoRoot, "js", "include-partials.js");
   if (!exists(includeScript)) fail("Missing js/include-partials.js");
 
-  // Verify sitemap exists and includes manifest pages (best-effort, not strict XML parsing)
+  // Sitemap must exist
   const sitemapPath = path.join(repoRoot, "sitemap.xml");
   if (!exists(sitemapPath)) fail("Missing sitemap.xml");
-  const sitemap = readFile(sitemapPath);
 
-  for (const p of manifest.pages) {
-    const url = `${manifest.baseUrl}${p}`;
-    if (!sitemap.includes(url)) {
+  const sitemapXml = readFile(sitemapPath);
+  const sitemapLocsRaw = extractSitemapLocs(sitemapXml);
+  const sitemapLocs = new Set(sitemapLocsRaw.map(normalizeUrl));
+
+  // Build expected URLs from manifest.pages
+  const expected = manifest.pages.map((p) => normalizeUrl(`${manifest.baseUrl}${p}`));
+
+  // Validate sitemap contains all expected URLs
+  for (const url of expected) {
+    if (!sitemapLocs.has(url)) {
+      console.error("---- Debug ----");
+      console.error("Expected URL:", url);
+      console.error("Manifest baseUrl:", manifest.baseUrl);
+      console.error("Manifest pages:", manifest.pages);
+      console.error("Sitemap loc count:", sitemapLocsRaw.length);
+      console.error("First few sitemap locs:", sitemapLocsRaw.slice(0, 10));
+      console.error("---------------");
       fail(`sitemap.xml missing URL: ${url}`);
     }
   }
 
-  // Scan HTML files for bad linking patterns
+  // Scan HTML files for bad patterns
   const htmlFiles = listHtmlFiles(repoRoot);
 
   for (const file of htmlFiles) {
     const html = readFile(file);
 
-    // Disallow ../ and ./ in href/src (common GitHub Pages breakage)
+    // Disallow ../ and ./ in href/src
     const badRelative = /(href|src)=["'](\.\.\/|\.\/)/g;
     if (badRelative.test(html)) {
       fail(`Found relative ./ or ../ link in: ${path.relative(repoRoot, file)}`);
     }
 
-    // Disallow .html route linking (encourage folder routes)
+    // Disallow .html links
     const badHtmlLinks = /(href|src)=["'][^"']+\.html(["'#?])/g;
     if (badHtmlLinks.test(html)) {
-      // allow the file itself; disallow links to .html
-      // this is a heuristic; treat as fail to enforce clean routing
       fail(`Found '.html' link in: ${path.relative(repoRoot, file)} (use folder routes instead)`);
     }
 
-    // Require partial includes on every HTML page except 404.html (optional choice)
+    // Require partial includes (skip 404.html if you ever add one)
     const is404 = file.endsWith(`${path.sep}404.html`);
     if (!is404) {
       if (!html.includes('data-include="/partials/header.html"')) {
@@ -98,18 +139,18 @@ function main() {
       }
     }
 
-    // Require root-relative internal navigation links (quick heuristic)
-    // (If links exist and do not start with http/mailto/#, they should start with /)
-    const hrefs = [...html.matchAll(/href=["']([^"']+)["']/g)].map(m => m[1]);
+    // Root-relative href enforcement for internal links
+    const hrefs = [...html.matchAll(/href=["']([^"']+)["']/g)].map((m) => m[1]);
     for (const href of hrefs) {
       if (
         href.startsWith("http") ||
         href.startsWith("mailto:") ||
         href.startsWith("#") ||
         href.startsWith("tel:")
-      ) continue;
+      )
+        continue;
 
-      if (!isRootRelativeLink(href)) {
+      if (!href.startsWith("/")) {
         fail(`Non-root-relative href "${href}" in ${path.relative(repoRoot, file)}`);
       }
     }
