@@ -1,149 +1,67 @@
 You are working in the repository a-s-patel/github.io, which powers https://www.proofoverhype.click/.
 
-This is a static GitHub Pages site using folder-based routing and shared styling.
+This is a static GitHub Pages site. You must follow these rules strictly.
 
-You must follow ALL rules below strictly.
+==================================================
+NON-NEGOTIABLE RULES
+==================================================
 
---------------------------------------------------
-PRIMARY OBJECTIVE
---------------------------------------------------
+1) Execute EXACTLY ONE task per run (defined by the GitHub Issue title/body).
+2) Use folder-based routing only:
+   - /section/index.html → /section/
+   - /section/article/index.html → /section/article/
+   Never create .html routes like /about.html.
 
-Execute EXACTLY ONE task per run.
+3) Use root-relative links only:
+   - href="/"
+   - href="/playbooks/"
+   Never use ./ or ../ and never use full domain URLs in links.
 
-The task is defined by the GitHub Issue title and body.
+4) Do not add frameworks/build tools (no React/Vue/Next, no package.json).
 
-Do NOT implement multiple tasks.
-Do NOT implement future tasks.
-Do NOT modify unrelated files.
+==================================================
+SITE STRUCTURE MAINTENANCE (REQUIRED)
+==================================================
 
---------------------------------------------------
-REPOSITORY STRUCTURE RULES (CRITICAL)
---------------------------------------------------
+If the task creates, deletes, or renames ANY route (section page, article page, about page, etc.), you MUST also keep site structure consistent in the SAME PR:
 
-Use folder-based URLs ONLY:
+A) Shared navigation MUST be consistent site-wide:
+   - All HTML pages must include:
+     - <div data-include="/partials/header.html"></div>
+     - <script src="/js/include-partials.js" defer></script>
+   - Do not create custom per-page nav variants.
 
-Correct:
-- /playbooks/index.html → /playbooks/
-- /about/index.html → /about/
-- /playbooks/meta-hooks-playbook/index.html → /playbooks/meta-hooks-playbook/
+B) Homepage navigation must link to correct section routes using real routes:
+   - /playbooks/
+   - /case-studies/
+   - /creative-lab/
+   - /growth-vault/
+   - /media/
+   - /about/
+   Replace anchor links (#playbooks, etc.) with route links. Do not keep duplicate anchor + route nav.
 
-Never create:
-- playbooks.html
-- about.html
-- nested duplicate structures
+C) Maintain /site-manifest.json as the source of truth:
+   - baseUrl
+   - sections (label + path)
+   - pages (list of routes)
+   Whenever routes change, update site-manifest.json.
 
---------------------------------------------------
-LINKING RULES (CRITICAL)
---------------------------------------------------
+D) Keep SEO crawl files correct:
+   - Update /sitemap.xml to include all routes in site-manifest.json.pages
+   - Update /robots.txt only if needed (e.g., sitemap location changes)
 
-Always use root-relative links:
+==================================================
+DESIGN + UX RULES
+==================================================
 
-Correct:
-- href="/"
-- href="/playbooks/"
-- href="/case-studies/"
-- href="/about/"
+- Match homepage styling (typography, spacing, layout).
+- Subheadline must be italic where present.
+- Fully responsive: no horizontal scrolling; nav works on small screens.
 
-Never use:
-- ./playbooks
-- ../playbooks
-- playbooks.html
-- full domain URLs
-
-This ensures compatibility with the custom domain.
-
---------------------------------------------------
-NAVIGATION RULES (CRITICAL)
---------------------------------------------------
-
-The site must have ONE consistent shared header/navigation.
-
-If creating new pages:
-- Reuse the existing header structure from index.html
-- Do NOT create alternate nav designs
-- Do NOT duplicate nav logic in inconsistent ways
-
-Navigation must include links to all existing main sections when appropriate.
-
---------------------------------------------------
-DESIGN CONSISTENCY RULES
---------------------------------------------------
-
-Match the homepage design exactly:
-
-- Same typography scale
-- Same spacing system
-- Same container widths
-- Same header structure
-- Same color system
-
-Subheadline must be italic when present.
-
-Do NOT introduce new visual systems unless explicitly instructed.
-
---------------------------------------------------
-MOBILE RESPONSIVENESS RULES
---------------------------------------------------
-
-All new pages must be fully responsive.
-
-Ensure:
-- No horizontal scrolling
-- Text remains readable on mobile
-- Navigation works on mobile
-- Cards stack vertically on smaller screens
-
---------------------------------------------------
-FRAMEWORK RULES
---------------------------------------------------
-
-This is a static site.
-
-Do NOT add:
-- React
-- Vue
-- Next.js
-- build tools
-- package.json
-- bundlers
-
-Use only static HTML, CSS, and existing styles.
-
---------------------------------------------------
-SAFE FILE MODIFICATION RULES
---------------------------------------------------
-
-Allowed:
-- Create new folders
-- Create new index.html files
-- Modify navigation links
-- Add new article pages
-- Update existing HTML carefully
-
-Avoid modifying unrelated sections.
-
---------------------------------------------------
+==================================================
 OUTPUT REQUIREMENTS
---------------------------------------------------
+==================================================
 
-Make the required code changes directly in the repository.
-
-When finished:
-
-- Ensure files are ready to commit
-- Do not leave incomplete work
-- Do not leave placeholder TODO comments unless explicitly instructed
-
-The workflow will handle committing and creating the Pull Request.
-
---------------------------------------------------
-QUALITY BAR
---------------------------------------------------
-
-The result must look like a natural, intentional extension of the existing site.
-
-Not like a prototype.
-Not like a demo.
-Not like a generated template.
-
-It must integrate cleanly with the current architecture.
+- Make the required code changes directly in the repo.
+- Keep changes minimal outside the task scope.
+- Leave repo ready for commit (workflow will commit and open PR).
