@@ -60,67 +60,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
 <!-- Your own -->
     <link rel="stylesheet" href="css/style.css" />
-    <style>
-      :where([class^="ri-"])::before { content: "\f3c2"; }
-      body {
-      font-family: 'Inter', sans-serif;
-      }
-      .gradient-bg {
-      background: linear-gradient(135deg, #f9f7ff 0%, #e6e0ff 100%);
-      }
-      .card-hover:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px -5px rgba(138, 111, 223, 0.1);
-      }
-      input[type="number"]::-webkit-inner-spin-button,
-      input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-      }
-      .custom-checkbox {
-      position: relative;
-      cursor: pointer;
-      }
-      .custom-checkbox input {
-      position: absolute;
-      opacity: 0;
-      cursor: pointer;
-      }
-      .checkmark {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 20px;
-      width: 20px;
-      background-color: #fff;
-      border: 2px solid #e2e8f0;
-      border-radius: 4px;
-      }
-      .custom-checkbox:hover input ~ .checkmark {
-      border-color: #8A6FDF;
-      }
-      .custom-checkbox input:checked ~ .checkmark {
-      background-color: #8A6FDF;
-      border-color: #8A6FDF;
-      }
-      .checkmark:after {
-      content: "";
-      position: absolute;
-      display: none;
-      }
-      .custom-checkbox input:checked ~ .checkmark:after {
-      display: block;
-      }
-      .custom-checkbox .checkmark:after {
-      left: 6px;
-      top: 2px;
-      width: 5px;
-      height: 10px;
-      border: solid white;
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-      }
-    </style>
   </head>
   <body class="bg-white min-h-screen">
     <!-- Header & Navigation -->
@@ -597,7 +536,7 @@
         </div>
         <div
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          id="caseStudiesContainer"
+         
         >
           <!-- Case Study 1 -->
           <a
@@ -605,7 +544,7 @@
             class="block bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group cursor-pointer"
           >
             <div class="h-48 bg-gray-100">
-              <img
+              <img loading="lazy"
                 src="images/Ecommerce_Website_Laptop.jpg"
                 alt="E-commerce Conversion Rate Optimization"
                 class="w-full h-full object-cover object-top"
@@ -644,7 +583,7 @@
             class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group"
           >
             <div class="h-48 bg-gray-100">
-              <img
+              <img loading="lazy"
                 src="images/SaaS_Product_Dashboard.jpg"
                 alt="SaaS Onboarding Optimization"
                 class="w-full h-full object-cover object-top"
@@ -680,7 +619,7 @@
             class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group"
           >
             <div class="h-48 bg-gray-100">
-              <img
+              <img loading="lazy"
                 src="images/Mobile_App_Marketing_Campaign.jpg"
                 alt="Mobile App UA Failure"
                 class="w-full h-full object-cover object-top"
@@ -737,7 +676,7 @@
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           <!-- Creative Item 1 -->
           <div class="relative group overflow-hidden rounded-lg shadow-sm">
-            <img
+            <img loading="lazy"
               src="images/Facebook_Creative_Fitness_App.jpg"
               alt="Facebook Ad Creative"
               class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105 filter blur-[0.5px]"
@@ -768,7 +707,7 @@
           </div>
           <!-- Creative Item 2 -->
           <div class="relative group overflow-hidden rounded-lg shadow-sm">
-            <img
+            <img loading="lazy"
               src="images/Email_Newsletter_Design.jpg"
               alt="Email Newsletter Design"
               class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105 filter blur-[0.5px]"
@@ -799,7 +738,7 @@
           </div>
           <!-- Creative Item 3 -->
           <div class="relative group overflow-hidden rounded-lg shadow-sm">
-            <img
+            <img loading="lazy"
               src="images/Landing_Page_Design.jpg"
               alt="Landing Page Design"
               class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105 filter blur-[0.5px]"
@@ -830,7 +769,7 @@
           </div>
           <!-- Creative Item 4 -->
           <div class="relative group overflow-hidden rounded-lg shadow-sm">
-            <img
+            <img loading="lazy"
               src="images/Instagram_Creative.jpg"
               alt="Instagram Ad Creative"
               class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105 filter blur-[0.5px]"
@@ -861,7 +800,7 @@
           </div>
           <!-- Creative Item 5 -->
           <div class="relative group overflow-hidden rounded-lg shadow-sm">
-            <img
+            <img loading="lazy"
               src="images/Google_Search_Creative.jpg"
               alt="Google Search Ad"
               class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105"
@@ -892,7 +831,7 @@
           </div>
           <!-- Creative Item 6 -->
           <div class="relative group overflow-hidden rounded-lg shadow-sm">
-            <img
+            <img loading="lazy"
               src="images/Email_Welcome_Sequence.jpg"
               alt="Email Welcome Sequence"
               class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105"
@@ -923,7 +862,7 @@
           </div>
           <!-- Creative Item 7 -->
           <div class="relative group overflow-hidden rounded-lg shadow-sm">
-            <img
+            <img loading="lazy"
               src="images/YouTube_Video_Thumbnail.jpg"
               alt="YouTube Thumbnail"
               class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105"
@@ -956,7 +895,7 @@
           </div>
           <!-- Creative Item 8 -->
           <div class="relative group overflow-hidden rounded-lg shadow-sm">
-            <img
+            <img loading="lazy"
               src="images/Product_Page_Design.jpg"
               alt="Product Page Design"
               class="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-105"
@@ -1204,7 +1143,7 @@
             class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group cursor-pointer"
           >
             <div class="h-48 bg-gray-100 relative">
-              <img
+              <img loading="lazy"
                 src="images/Marketing_Podcast_Recording.jpg"
                 alt="Podcast Episode"
                 class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
@@ -1260,7 +1199,7 @@
             class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group"
           >
             <div class="h-48 bg-gray-100 relative">
-              <img
+              <img loading="lazy"
                 src="images/Marketing_Video_Recording.jpg"
                 alt="Video Episode"
                 class="w-full h-full object-cover object-top"
@@ -1301,7 +1240,7 @@
             class="bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] group"
           >
             <div class="h-48 bg-gray-100 relative">
-              <img
+              <img loading="lazy"
                 src="images/Marketing_Podcast_Interview.jpg"
                 alt="Podcast Episode"
                 class="w-full h-full object-cover object-top"
@@ -1547,8 +1486,5 @@
         </div>
       </div>
     </footer>
-<!-- JS Script (at the bottom before </body>) -->
-
-    <script src="js/script.js"></script>
   </body>
 </html>

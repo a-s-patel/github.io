@@ -8,10 +8,6 @@ body {
   background: linear-gradient(135deg, #f9f7ff 0%, #e6e0ff 100%);
 }
 
-.card-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px -5px rgba(138, 111, 223, 0.1);
-}
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
