@@ -1,86 +1,247 @@
-# Proof Over Hype — Build Tasks (PR-per-task)
+# Proof Over Hype — Build Tasks (PR-per-task workflow)
 
-Rules:
-- One task = one PR
-- Keep PRs small and easy to review
-- Use folder URLs (example: /playbooks/ not /playbooks.html)
-- Use root-relative links everywhere (example: href="/playbooks/")
+This repository powers https://www.proofoverhype.click/
 
----
+All work is executed by Codex via GitHub Issues and Pull Requests.
 
-## Task 1 — Foundation: sections + shared nav + homepage links
-- Create section folders:
-  - /playbooks/index.html
-  - /case-studies/index.html
-  - /creative-lab/index.html
-  - /growth-vault/index.html
-  - /media/index.html
-- Add a shared header/nav across homepage + all section pages
-- Update homepage nav items so:
+--------------------------------------------------
+GLOBAL RULES
+--------------------------------------------------
+
+These rules apply to ALL tasks:
+
+- One task = one Pull Request
+- Do NOT combine tasks
+- Do NOT implement future tasks early
+- Keep PRs small and reviewable
+- Follow folder-based routing only
+
+Correct routing examples:
+- /playbooks/index.html → /playbooks/
+- /about/index.html → /about/
+- /playbooks/meta-hooks-playbook/index.html → /playbooks/meta-hooks-playbook/
+
+Never create:
+- playbooks.html
+- about.html
+- relative path routing
+
+Always use root-relative links:
+
+Correct:
+- href="/"
+- href="/playbooks/"
+- href="/about/"
+
+Never use:
+- ./playbooks
+- ../playbooks
+- playbooks.html
+
+--------------------------------------------------
+Task 1 — Foundation: sections + shared nav + homepage links
+--------------------------------------------------
+
+Create section folders:
+
+- /playbooks/index.html
+- /case-studies/index.html
+- /creative-lab/index.html
+- /growth-vault/index.html
+- /media/index.html
+
+Navigation requirements:
+
+- Add a shared header/navigation across homepage and all section pages
+- Replace homepage anchor links (#playbooks, #case-studies, etc.) with real route links:
   - “Playbooks” → /playbooks/
   - “Case Studies” → /case-studies/
   - “Creative Lab” → /creative-lab/
   - “Growth Vault” → /growth-vault/
   - “Media” → /media/
-- Each section page:
-  - Same H1 + subheadline styling as homepage
-  - Subheadline italic
-  - “Coming soon” layout with 3–6 starter article cards linking to placeholder article routes
+- Do NOT keep or duplicate anchor-based navigation
+- Use root-relative links only
 
-## Task 2 — Add About page
-- Create /about/index.html
-- Match shared header/nav + styling (italic subheadline)
-- Add a short “what this site is” description and a simple contact CTA (no forms)
+Section page requirements:
 
-## Task 3 — Add Teardowns section
-- Create /teardowns/index.html
-- Add to nav (header + homepage if appropriate)
-- 3–6 starter teardown cards linking to placeholder teardown pages
+Each section page must include:
 
-## Task 4 — Create a shared Article template
-- Create a consistent article layout (title, date, reading time, content area, back link)
-- Apply to at least one placeholder article to prove it works
+- Same H1 styling as homepage
+- Subheadline must be italic
+- Same typography, spacing, and layout system
+- Shared header/navigation
+- “Coming soon” layout
+- 3–6 starter article cards linking to placeholder article routes, example:
+  - /playbooks/meta-hooks-playbook/
 
-## Task 5 — Generate placeholder articles per section
-- For each section, add 3–6 placeholder articles:
-  - /playbooks/<slug>/index.html
-  - /case-studies/<slug>/index.html
-  - /creative-lab/<slug>/index.html
-  - /growth-vault/<slug>/index.html
-  - /media/<slug>/index.html
-  - /teardowns/<slug>/index.html (if present)
-- Each section index page should link to its articles
+Mobile requirements:
 
-## Task 6 — Mobile responsiveness pass
-- Ensure nav works on phones and tablets
 - No horizontal scrolling
-- Typography scales cleanly
-- Cards stack nicely
+- Typography scales properly
+- Layout stacks cleanly on mobile
 
-## Task 7 — System light/dark theme pass
-- Ensure pages follow OS theme automatically (prefers-color-scheme)
-- Make sure text contrast is readable in both modes
+--------------------------------------------------
+Task 2 — Add About page
+--------------------------------------------------
 
-## Task 8 — Add a 404 page
-- Create /404.html (GitHub Pages friendly)
-- Styled consistent with site + links back home/sections
+Create:
 
-## Task 9 — SEO basics
-- Unique <title> per page
-- Meta description per page
-- Open Graph + Twitter tags for homepage + section pages
+- /about/index.html
 
-## Task 10 — sitemap.xml + robots.txt
-- Add /sitemap.xml with links to main pages (and placeholder articles)
-- Add /robots.txt that points to sitemap
+Requirements:
 
-## Task 11 — Performance + accessibility quick pass
-- Check contrast, focus states, keyboard navigation
-- Ensure images are sized appropriately
-- Minimize layout shift
+- Same shared header/navigation
+- Same H1 styling
+- Subheadline must be italic
+- Include short “About Proof Over Hype” description
+- Include link back to homepage (/)
+- Fully responsive layout
 
-## Task 12 — Simple contributor docs
-- Add a short section to README:
-  - “How to add a new section page”
-  - “How to add a new article”
-  - “How to run the Codex workflow (Issue + label)”
+--------------------------------------------------
+Task 3 — Add Teardowns section
+--------------------------------------------------
+
+Create:
+
+- /teardowns/index.html
+
+Requirements:
+
+- Add link to navigation
+- Same layout and styling as other sections
+- Include 3–6 teardown article cards linking to placeholder teardown pages
+
+--------------------------------------------------
+Task 4 — Create shared article page template
+--------------------------------------------------
+
+Create consistent article layout structure:
+
+Example:
+
+- /playbooks/example-article/index.html
+
+Requirements:
+
+- Title
+- Subheadline (italic)
+- Content container
+- Back link to section
+- Shared header/navigation
+- Fully responsive
+
+This template will be reused across all sections.
+
+--------------------------------------------------
+Task 5 — Generate placeholder articles per section
+--------------------------------------------------
+
+For EACH section create 3–6 placeholder articles:
+
+Structure example:
+
+- /playbooks/article-slug/index.html
+- /case-studies/article-slug/index.html
+- /creative-lab/article-slug/index.html
+- /growth-vault/article-slug/index.html
+- /media/article-slug/index.html
+- /teardowns/article-slug/index.html
+
+Requirements:
+
+- Use shared article layout template
+- Each section page must link to its articles
+- Use folder-based routing only
+
+--------------------------------------------------
+Task 6 — Mobile responsiveness pass
+--------------------------------------------------
+
+Audit and fix mobile layout across all pages:
+
+Ensure:
+
+- Navigation works correctly
+- No horizontal scrolling
+- Proper spacing and typography
+- Cards stack vertically
+- No layout breaks on smaller screens
+
+--------------------------------------------------
+Task 7 — System light/dark theme support
+--------------------------------------------------
+
+Ensure site respects system theme:
+
+- Use prefers-color-scheme
+- Maintain readability in both modes
+- Preserve existing visual design intent
+
+Do not introduce a new design system.
+
+--------------------------------------------------
+Task 8 — Add 404 page
+--------------------------------------------------
+
+Create:
+
+- /404.html
+
+Requirements:
+
+- Match site styling
+- Include navigation
+- Include link back to homepage and sections
+
+--------------------------------------------------
+Task 9 — SEO improvements
+--------------------------------------------------
+
+Ensure each page includes:
+
+- Unique <title>
+- Meta description
+- Open Graph tags
+- Twitter preview tags
+
+Preserve current homepage SEO setup.
+
+--------------------------------------------------
+Task 10 — Verify and update sitemap.xml and robots.txt
+--------------------------------------------------
+
+Do NOT recreate files if they already exist.
+
+Instead:
+
+- Verify /sitemap.xml includes all sections and article routes
+- Update sitemap.xml to include any newly created pages
+- Verify /robots.txt references sitemap.xml correctly
+- Update only if necessary
+
+--------------------------------------------------
+Task 11 — Performance and accessibility pass
+--------------------------------------------------
+
+Improve:
+
+- Text contrast
+- Focus states
+- Keyboard navigation
+- Image sizing
+- Layout stability
+
+Preserve visual design.
+
+--------------------------------------------------
+Task 12 — Contributor documentation
+--------------------------------------------------
+
+Update README.md with instructions:
+
+- How to add a new section
+- How to add a new article
+- How to use folder-based routing
+- How to trigger Codex via Issue + codex-run label
+
+Keep instructions simple and clear.
