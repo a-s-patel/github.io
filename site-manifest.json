@@ -9,6 +9,7 @@
   ],
   "pages": [
     "/",
+    "/about/",
     "/playbooks/",
     "/playbooks/activation-experiment-bank/",
     "/case-studies/",
