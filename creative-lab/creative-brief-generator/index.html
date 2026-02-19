@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- SEO Meta Tags -->
+    <meta
+      name="description"
+      content="Generate a concise creative brief that turns your offer and audience into testable hooks and angles."
+    />
+    <meta
+      name="keywords"
+      content="creative brief generator, ad creative brief, messaging angles, hooks"
+    />
+    <meta name="author" content="Proof Over Hype" />
+    <link
+      rel="canonical"
+      href="https://www.proofoverhype.click/creative-lab/creative-brief-generator/"
+    />
+
+    <!-- Open Graph / Social Media Preview -->
+    <meta
+      property="og:title"
+      content="Creative Brief Generator | Proof Over Hype"
+    />
+    <meta
+      property="og:description"
+      content="Turn an offer + audience into a concise brief with angles, hooks, and constraints in minutes."
+    />
+    <meta
+      property="og:image"
+      content="https://www.proofoverhype.click/images/Professional_Marketing_Dashboard.jpg"
+    />
+    <meta
+      property="og:url"
+      content="https://www.proofoverhype.click/creative-lab/creative-brief-generator/"
+    />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Creative Brief Generator | Proof Over Hype"
+    />
+    <meta
+      name="twitter:description"
+      content="Turn an offer + audience into a concise brief with angles, hooks, and constraints in minutes."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.proofoverhype.click/images/Professional_Marketing_Dashboard.jpg"
+    />
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a" />
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://www.proofoverhype.click/images/favicon.svg"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creative Brief Generator | Proof Over Hype</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#8A6FDF", secondary: "#1E293B" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Other CSS libraries... -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <!-- Your own -->
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body class="bg-white min-h-screen">
+    <div data-include="/partials/header.html"></div>
+
+    <main class="bg-white">
+      <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <div class="max-w-3xl">
+            <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+              <a href="/" class="hover:text-gray-700">Home</a>
+              <span class="mx-2">→</span>
+              <a href="/creative-lab/" class="hover:text-gray-700">
+                Creative Lab
+              </a>
+              <span class="mx-2">→</span>
+              <span class="text-gray-600">Creative Brief Generator</span>
+            </nav>
+            <h1
+              class="hero-heading text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+            >
+              Creative Brief Generator
+            </h1>
+            <p class="hero-subheadline text-lg text-gray-600 mb-6 italic">
+              A fast way to turn an offer + audience into testable angles and
+              hooks.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div class="bg-white border border-gray-100 rounded-lg p-6">
+              <h2 class="text-xl font-semibold text-gray-900 mb-4">
+                Input the essentials
+              </h2>
+              <form class="space-y-4">
+                <div>
+                  <label for="offer" class="block text-sm font-medium text-gray-700">
+                    Offer
+                  </label>
+                  <input
+                    id="offer"
+                    name="offer"
+                    type="text"
+                    placeholder="What are you selling?"
+                    class="mt-2 w-full rounded-md border border-gray-200 px-3 py-2 text-sm text-gray-900 focus:border-primary focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="audience"
+                    class="block text-sm font-medium text-gray-700"
+                  >
+                    Audience
+                  </label>
+                  <input
+                    id="audience"
+                    name="audience"
+                    type="text"
+                    placeholder="Who is this for?"
+                    class="mt-2 w-full rounded-md border border-gray-200 px-3 py-2 text-sm text-gray-900 focus:border-primary focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label for="problem" class="block text-sm font-medium text-gray-700">
+                    Problem
+                  </label>
+                  <textarea
+                    id="problem"
+                    name="problem"
+                    rows="3"
+                    placeholder="What pain or friction are you solving?"
+                    class="mt-2 w-full rounded-md border border-gray-200 px-3 py-2 text-sm text-gray-900 focus:border-primary focus:outline-none"
+                  ></textarea>
+                </div>
+                <div>
+                  <label for="proof" class="block text-sm font-medium text-gray-700">
+                    Proof
+                  </label>
+                  <textarea
+                    id="proof"
+                    name="proof"
+                    rows="3"
+                    placeholder="What evidence backs the claim?"
+                    class="mt-2 w-full rounded-md border border-gray-200 px-3 py-2 text-sm text-gray-900 focus:border-primary focus:outline-none"
+                  ></textarea>
+                </div>
+                <div>
+                  <label
+                    for="constraints"
+                    class="block text-sm font-medium text-gray-700"
+                  >
+                    Constraints
+                  </label>
+                  <textarea
+                    id="constraints"
+                    name="constraints"
+                    rows="2"
+                    placeholder="Budget, timeline, compliance notes"
+                    class="mt-2 w-full rounded-md border border-gray-200 px-3 py-2 text-sm text-gray-900 focus:border-primary focus:outline-none"
+                  ></textarea>
+                </div>
+                <div>
+                  <label for="channel" class="block text-sm font-medium text-gray-700">
+                    Channel
+                  </label>
+                  <input
+                    id="channel"
+                    name="channel"
+                    type="text"
+                    placeholder="Where will this run?"
+                    class="mt-2 w-full rounded-md border border-gray-200 px-3 py-2 text-sm text-gray-900 focus:border-primary focus:outline-none"
+                  />
+                </div>
+                <button
+                  type="button"
+                  class="w-full rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white transition hover:bg-primary/90"
+                >
+                  Generate Brief
+                </button>
+              </form>
+            </div>
+
+            <div class="space-y-6">
+              <div class="bg-white border border-gray-100 rounded-lg p-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-4">
+                  Generated Brief
+                </h2>
+                <div class="space-y-4 text-sm text-gray-700">
+                  <div>
+                    <p class="font-semibold text-gray-900">Positioning</p>
+                    <p>
+                      A 10-minute onboarding sprint that helps busy B2B founders
+                      ship their first Meta ads without hiring an agency.
+                    </p>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-gray-900">Primary audience</p>
+                    <p>
+                      Seed-stage SaaS founders who are spending on paid social but
+                      lack repeatable creative systems.
+                    </p>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-gray-900">Problem to solve</p>
+                    <p>
+                      They need a clear testing plan and proof-backed angles
+                      before spending more on creative production.
+                    </p>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-gray-900">Proof cues</p>
+                    <p>
+                      12 campaign audits, 3x increase in hook testing velocity,
+                      and 18% lower CPL across pilot accounts.
+                    </p>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-gray-900">Constraints</p>
+                    <p>
+                      Keep claims conservative, highlight outcomes within 30
+                      days, and prioritize short-form video.
+                    </p>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-gray-900">Channels</p>
+                    <p>Meta Reels, LinkedIn paid social, landing page hero.</p>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-gray-900">Testable angles</p>
+                    <ul class="list-disc list-inside text-gray-700">
+                      <li>"Proof-first ads beat prettier ads every time."</li>
+                      <li>
+                        "Stop guessing hooks — steal the 5-angle testing
+                        template."
+                      </li>
+                      <li>
+                        "Launch a founder-led UGC sprint in one afternoon."
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-gray-50 border border-gray-100 rounded-lg p-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-4">
+                  How to use this
+                </h2>
+                <ol class="list-decimal list-inside text-sm text-gray-700 space-y-2">
+                  <li>Fill the form with your current offer and audience.</li>
+                  <li>Refine the example brief to match your brand voice.</li>
+                  <li>
+                    Turn each testable angle into a hook, headline, or ad
+                    concept.
+                  </li>
+                </ol>
+              </div>
+
+              <div class="flex flex-wrap gap-3">
+                <a
+                  href="/creative-lab/"
+                  class="inline-flex items-center rounded-md border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 transition hover:border-primary/50"
+                >
+                  Back to Creative Lab
+                </a>
+                <a
+                  href="/playbooks/"
+                  class="inline-flex items-center rounded-md bg-secondary px-4 py-2 text-sm font-semibold text-white transition hover:bg-secondary/90"
+                >
+                  Explore Playbooks
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-include="/partials/footer.html"></div>
+    <script src="/js/include-partials.js" defer></script>
+  </body>
+</html>
