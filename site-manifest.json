@@ -10,6 +10,7 @@
   "pages": [
     "/",
     "/playbooks/",
+    "/playbooks/meta-hooks-playbook/",
     "/case-studies/",
     "/creative-lab/",
     "/growth-vault/",
