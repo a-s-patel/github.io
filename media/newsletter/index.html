@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- SEO Meta Tags -->
+    <meta
+      name="description"
+      content="Newsletter experiments, playbooks, and teardown notes for growth teams."
+    />
+    <meta
+      name="keywords"
+      content="newsletter, growth experiments, playbooks, teardown notes"
+    />
+    <meta name="author" content="Proof Over Hype" />
+    <link
+      rel="canonical"
+      href="https://www.proofoverhype.click/media/newsletter/"
+    />
+
+    <!-- Open Graph / Social Media Preview -->
+    <meta property="og:title" content="Newsletter | Proof Over Hype" />
+    <meta
+      property="og:description"
+      content="Experiments, playbooks, and teardown notes—short and practical."
+    />
+    <meta
+      property="og:image"
+      content="https://www.proofoverhype.click/images/Professional_Marketing_Dashboard.jpg"
+    />
+    <meta
+      property="og:url"
+      content="https://www.proofoverhype.click/media/newsletter/"
+    />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Newsletter | Proof Over Hype" />
+    <meta
+      name="twitter:description"
+      content="Experiments, playbooks, and teardown notes—short and practical."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.proofoverhype.click/images/Professional_Marketing_Dashboard.jpg"
+    />
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a" />
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://www.proofoverhype.click/images/favicon.svg"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Newsletter | Proof Over Hype</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#8A6FDF", secondary: "#1E293B" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Other CSS libraries... -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <!-- Your own -->
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body class="bg-white min-h-screen">
+    <div data-include="/partials/header.html"></div>
+
+    <main class="bg-white">
+      <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <div class="max-w-5xl">
+            <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+              <a href="/" class="hover:text-gray-700">Home</a>
+              <span class="mx-2">→</span>
+              <a href="/media/" class="hover:text-gray-700">Media</a>
+              <span class="mx-2">→</span>
+              <span class="text-gray-600">Newsletter</span>
+            </nav>
+            <div class="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-10 items-start">
+              <div>
+                <h1
+                  class="hero-heading text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+                >
+                  Newsletter
+                </h1>
+                <p class="hero-subheadline text-lg text-gray-600 mb-6">
+                  Experiments, playbooks, and teardown notes—short and practical.
+                </p>
+                <p class="text-gray-600 mb-6">
+                  A weekly packet of decisions, teardown notes, and clear next steps.
+                  Skimmable, zero fluff.
+                </p>
+                <div class="flex flex-wrap items-center gap-4">
+                  <a
+                    href="/media/"
+                    class="inline-flex items-center justify-center px-5 py-3 rounded-button border border-gray-200 text-sm font-semibold text-gray-700 hover:border-primary/40 hover:text-gray-900 transition-colors"
+                  >
+                    Explore Media
+                  </a>
+                  <a
+                    href="/"
+                    class="inline-flex items-center justify-center px-5 py-3 rounded-button bg-primary text-sm font-semibold text-white hover:bg-primary/90 transition-colors"
+                  >
+                    Back to Home
+                  </a>
+                </div>
+              </div>
+
+              <div class="bg-white border border-gray-100 rounded-xl p-6 shadow-sm">
+                <h2 class="text-xl font-semibold text-gray-900 mb-2">
+                  Get the next issue
+                </h2>
+                <p class="text-sm text-gray-600 mb-5">
+                  One email per week. Unsubscribe anytime.
+                </p>
+                <form class="space-y-4" action="#" method="post">
+                  <label class="block text-sm font-medium text-gray-700" for="email">
+                    Email address
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    required
+                    placeholder="you@company.com"
+                    class="w-full rounded-button border border-gray-200 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  />
+                  <button
+                    type="submit"
+                    class="w-full rounded-button bg-primary px-4 py-3 text-sm font-semibold text-white hover:bg-primary/90 transition-colors"
+                  >
+                    Subscribe
+                  </button>
+                </form>
+                <p class="text-xs text-gray-500 mt-4">
+                  We respect your inbox. No spam, no tricks.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10">
+            <div class="bg-white border border-gray-100 rounded-xl p-6">
+              <h2 class="text-xl font-semibold text-gray-900 mb-4">
+                What you'll get
+              </h2>
+              <ul class="space-y-3 text-gray-600">
+                <li class="flex items-start gap-3">
+                  <span class="mt-1 h-2 w-2 rounded-full bg-primary"></span>
+                  <span>Experiment briefs that explain the why, not just the what.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="mt-1 h-2 w-2 rounded-full bg-primary"></span>
+                  <span>Playbook breakdowns you can deploy the same week.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="mt-1 h-2 w-2 rounded-full bg-primary"></span>
+                  <span>Teardowns of winning ads, landing pages, and flows.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="mt-1 h-2 w-2 rounded-full bg-primary"></span>
+                  <span>Signal shifts to watch before your dashboard tells you.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="mt-1 h-2 w-2 rounded-full bg-primary"></span>
+                  <span>Clear next steps you can share with your team.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-white border border-gray-100 rounded-xl p-6">
+              <h2 class="text-xl font-semibold text-gray-900 mb-4">
+                Recent issues
+              </h2>
+              <ul class="space-y-4 text-gray-600">
+                <li>
+                  <a href="#" class="text-gray-900 font-semibold hover:text-primary">
+                    Issue 014: The onboarding friction audit
+                  </a>
+                  <p class="text-sm text-gray-500">
+                    A five-step sweep to catch drop-offs before they harden.
+                  </p>
+                </li>
+                <li>
+                  <a href="#" class="text-gray-900 font-semibold hover:text-primary">
+                    Issue 013: Testing cadence without burnout
+                  </a>
+                  <p class="text-sm text-gray-500">
+                    Lightweight rituals that keep experiments shipping.
+                  </p>
+                </li>
+                <li>
+                  <a href="#" class="text-gray-900 font-semibold hover:text-primary">
+                    Issue 012: Offer clarity teardown
+                  </a>
+                  <p class="text-sm text-gray-500">
+                    Finding the highest-leverage promise in a noisy market.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-include="/partials/footer.html"></div>
+    <script src="/js/include-partials.js" defer></script>
+  </body>
+</html>
