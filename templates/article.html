@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="DESCRIPTION" />
+    <meta name="author" content="AUTHOR_NAME" />
+    <link rel="canonical" href="CANONICAL_URL" />
+
+    <!-- Open Graph / Social Media Preview -->
+    <meta property="og:title" content="TITLE | Proof Over Hype" />
+    <meta property="og:description" content="DESCRIPTION" />
+    <meta property="og:url" content="CANONICAL_URL" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="/images/Professional_Marketing_Dashboard.jpg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="TITLE | Proof Over Hype" />
+    <meta name="twitter:description" content="DESCRIPTION" />
+    <meta name="twitter:image" content="/images/Professional_Marketing_Dashboard.jpg" />
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TITLE | Proof Over Hype</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#8A6FDF", secondary: "#1E293B" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body class="bg-white min-h-screen">
+    <div data-include="/partials/header.html"></div>
+
+    <main class="bg-white">
+      <section class="py-16">
+        <div class="article-container">
+          <div class="section-label">SECTION_NAME</div>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mt-3">
+            ARTICLE_TITLE
+          </h1>
+          <p class="article-subheadline">ARTICLE_SUBHEADLINE</p>
+          <div class="article-meta mt-5">
+            <span>Published PUBLISHED_DATE</span>
+            <span aria-hidden="true">&middot;</span>
+            <span>READ_TIME min read</span>
+            <span aria-hidden="true">&middot;</span>
+            <span>by AUTHOR_NAME</span>
+          </div>
+
+          <div class="article-body">
+            ARTICLE_BODY
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-include="/partials/footer.html"></div>
+    <script src="/js/include-partials.js" defer></script>
+  </body>
+</html>
