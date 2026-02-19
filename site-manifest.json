@@ -5,11 +5,9 @@
     { "label": "Case Studies", "path": "/case-studies/" },
     { "label": "Creative Lab", "path": "/creative-lab/" },
     { "label": "Growth Vault", "path": "/growth-vault/" },
-    { "label": "Media", "path": "/media/" },
-    { "label": "About", "path": "/about/" }
+    { "label": "Media", "path": "/media/" }
   ],
   "pages": [
-    "/",
-    "/about/"
+    "/"
   ]
 }
