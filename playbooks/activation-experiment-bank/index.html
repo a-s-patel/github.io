@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- SEO Meta Tags -->
+    <meta
+      name="description"
+      content="Proven activation experiments to reduce time-to-value, with setup notes and success metrics."
+    />
+    <meta name="author" content="Proof Over Hype" />
+    <link rel="canonical" href="/playbooks/activation-experiment-bank/" />
+
+    <!-- Open Graph / Social Media Preview -->
+    <meta property="og:title" content="Activation Experiment Bank | Proof Over Hype" />
+    <meta
+      property="og:description"
+      content="Proven activation experiments to reduce time-to-value, with setup notes and success metrics."
+    />
+    <meta property="og:url" content="/playbooks/activation-experiment-bank/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="/images/Professional_Marketing_Dashboard.jpg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Activation Experiment Bank | Proof Over Hype" />
+    <meta
+      name="twitter:description"
+      content="Proven activation experiments to reduce time-to-value, with setup notes and success metrics."
+    />
+    <meta name="twitter:image" content="/images/Professional_Marketing_Dashboard.jpg" />
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Activation Experiment Bank | Proof Over Hype</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#8A6FDF", secondary: "#1E293B" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body class="bg-white min-h-screen">
+    <div data-include="/partials/header.html"></div>
+
+    <main class="bg-white">
+      <section class="py-16">
+        <div class="article-container">
+          <div class="section-label">Playbooks</div>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mt-3">
+            Activation Experiment Bank
+          </h1>
+          <p class="article-subheadline">
+            Proven activation experiments to reduce time-to-value.
+          </p>
+          <div class="article-meta mt-5">
+            <span>Published Jan 2026</span>
+            <span aria-hidden="true">&middot;</span>
+            <span>8 min read</span>
+            <span aria-hidden="true">&middot;</span>
+            <span>by Proof Over Hype</span>
+          </div>
+
+          <div class="article-body">
+            <p>
+              Activation is the moment when a user experiences the first clear win. If
+              that moment takes too long, churn follows. The experiments below help
+              teams shorten time-to-value and make the first win obvious.
+            </p>
+
+            <h2>Introduction</h2>
+            <p>
+              Each experiment is framed around a single activation milestone. Pick the
+              one that maps to your product, then measure the lift in <code>activation_rate</code>
+              and time to first value. Keep experiments small and focused.
+            </p>
+
+            <blockquote>
+              Activation is not a single button click; it is the first proof that the
+              product works for the user.
+            </blockquote>
+
+            <h2>Experiment 1: Value Moment Checklist</h2>
+            <p>
+              Create a three-step checklist that guides users to the first value moment.
+              The checklist should be visible in the product shell and collapse after
+              completion.
+            </p>
+            <h3>Setup</h3>
+            <ul>
+              <li>Identify the single action that proves value.</li>
+              <li>Break it into three atomic steps.</li>
+              <li>Instrument each step with event tracking.</li>
+            </ul>
+            <h3>Success Criteria</h3>
+            <p>
+              Measure lift in checklist completion rate and the percentage of users who
+              hit the first value moment within 24 hours.
+            </p>
+
+            <h2>Experiment 2: Guided Success Path</h2>
+            <p>
+              Replace your generic onboarding with a guided path that asks one question
+              and routes the user to a tailored starting point. Example: choose a goal,
+              then preconfigure their workspace.
+            </p>
+            <h3>Execution Steps</h3>
+            <ol>
+              <li>Define 3 to 5 high-intent goals.</li>
+              <li>Map each goal to a preconfigured template.</li>
+              <li>Send users directly into the configured state.</li>
+            </ol>
+            <h3>Implementation Note</h3>
+            <p>Persist the goal selection so the system can auto-personalize later.</p>
+            <pre><code>const goal = user.onboarding.goal;
+if (goal) {
+  configureWorkspace(goal);
+  logEvent('activation_path_selected', { goal });
+}</code></pre>
+
+            <h2>Experiment 3: First Win Reminder</h2>
+            <p>
+              If a user fails to complete the first value action within 12 hours, send
+              a short, context-rich reminder with a direct deep link to finish the task.
+            </p>
+            <h3>Message Checklist</h3>
+            <ul>
+              <li>Use the exact name of the unfinished action.</li>
+              <li>Include a single CTA that finishes the action.</li>
+              <li>Show the time saved once the action completes.</li>
+            </ul>
+
+            <h2>Conclusion</h2>
+            <p>
+              Run one activation experiment at a time and keep the primary metric
+              consistent. Once you identify the highest-lift lever, bake it into
+              onboarding and move to the next bottleneck.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-include="/partials/footer.html"></div>
+    <script src="/js/include-partials.js" defer></script>
+  </body>
+</html>
