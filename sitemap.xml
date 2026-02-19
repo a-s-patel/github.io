@@ -26,6 +26,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.proofoverhype.click/creative-lab/creative-brief-generator/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.proofoverhype.click/growth-vault/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
