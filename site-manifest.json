@@ -1,23 +1,40 @@
 {
   "baseUrl": "https://www.proofoverhype.click",
   "sections": [
-    { "label": "Playbooks", "path": "/playbooks/" },
-    { "label": "Case Studies", "path": "/case-studies/" },
-    { "label": "Creative Lab", "path": "/creative-lab/" },
-    { "label": "Growth Vault", "path": "/growth-vault/" },
-    { "label": "Media", "path": "/media/" }
+    {
+      "label": "Playbooks",
+      "path": "/playbooks/"
+    },
+    {
+      "label": "Case Studies",
+      "path": "/case-studies/"
+    },
+    {
+      "label": "Creative Lab",
+      "path": "/creative-lab/"
+    },
+    {
+      "label": "Growth Vault",
+      "path": "/growth-vault/"
+    },
+    {
+      "label": "Media",
+      "path": "/media/"
+    }
   ],
   "pages": [
     "/",
     "/about/",
-    "/playbooks/",
-    "/playbooks/activation-experiment-bank/",
     "/case-studies/",
     "/case-studies/cac-120-to-95/",
     "/creative-lab/",
     "/creative-lab/creative-brief-generator/",
     "/growth-vault/",
+    "/growth-vault/metrics-dictionary/",
     "/media/",
-    "/media/newsletter/"
+    "/media/newsletter/",
+    "/playbooks/",
+    "/playbooks/activation-experiment-bank/",
+    "/playbooks/meta-hooks-playbook/"
   ]
 }
