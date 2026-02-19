@@ -8,6 +8,11 @@
     { "label": "Media", "path": "/media/" }
   ],
   "pages": [
-    "/"
+    "/",
+    "/playbooks/",
+    "/case-studies/",
+    "/creative-lab/",
+    "/growth-vault/",
+    "/media/"
   ]
 }
