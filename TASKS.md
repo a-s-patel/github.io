@@ -39,7 +39,28 @@ Never use:
 - playbooks.html
 
 --------------------------------------------------
+TASK STATUS KEY
+--------------------------------------------------
+
+Status values:
+- COMPLETE
+- TODO
+
+Codex must:
+- Execute exactly ONE TODO task per run
+- Open a PR
+- In that PR, change the task Status from TODO → COMPLETE
+- Then STOP
+
+If Codex finds a task’s outputs already exist, it must:
+- Mark it COMPLETE in TASKS.md
+- Make no other changes (unless required for validator)
+- Open PR
+- STOP
+
+--------------------------------------------------
 Task 1 — Foundation: sections + shared nav + homepage links
+Status: COMPLETE
 --------------------------------------------------
 
 Create section folders:
@@ -62,186 +83,107 @@ Navigation requirements:
 - Do NOT keep or duplicate anchor-based navigation
 - Use root-relative links only
 
-Section page requirements:
-
-Each section page must include:
-
-- Same H1 styling as homepage
-- Subheadline must be italic
-- Same typography, spacing, and layout system
-- Shared header/navigation
-- “Coming soon” layout
-- 3–6 starter article cards linking to placeholder article routes, example:
-  - /playbooks/meta-hooks-playbook/
-
-Mobile requirements:
-
-- No horizontal scrolling
-- Typography scales properly
-- Layout stacks cleanly on mobile
-
 --------------------------------------------------
 Task 2 — Add About page
+Status: COMPLETE
 --------------------------------------------------
 
 Create:
 
 - /about/index.html
 
-Requirements:
-
-- Same shared header/navigation
-- Same H1 styling
-- Subheadline must be italic
-- Include short “About Proof Over Hype” description
-- Include link back to homepage (/)
-- Fully responsive layout
-
 --------------------------------------------------
 Task 3 — Add Teardowns section
+Status: COMPLETE
 --------------------------------------------------
 
 Create:
 
 - /teardowns/index.html
 
-Requirements:
-
-- Add link to navigation
-- Same layout and styling as other sections
-- Include 3–6 teardown article cards linking to placeholder teardown pages
-
 --------------------------------------------------
 Task 4 — Create shared article page template
+Status: COMPLETE
 --------------------------------------------------
 
-Create consistent article layout structure:
-
-Example:
-
-- /playbooks/example-article/index.html
-
-Requirements:
-
-- Title
-- Subheadline (italic)
-- Content container
-- Back link to section
-- Shared header/navigation
-- Fully responsive
-
-This template will be reused across all sections.
+Create consistent article layout structure.
 
 --------------------------------------------------
 Task 5 — Generate placeholder articles per section
+Status: COMPLETE
 --------------------------------------------------
 
-For EACH section create 3–6 placeholder articles:
-
-Structure example:
-
-- /playbooks/article-slug/index.html
-- /case-studies/article-slug/index.html
-- /creative-lab/article-slug/index.html
-- /growth-vault/article-slug/index.html
-- /media/article-slug/index.html
-- /teardowns/article-slug/index.html
-
-Requirements:
-
-- Use shared article layout template
-- Each section page must link to its articles
-- Use folder-based routing only
+For EACH section create 3–6 placeholder articles.
 
 --------------------------------------------------
 Task 6 — Mobile responsiveness pass
+Status: COMPLETE
 --------------------------------------------------
 
-Audit and fix mobile layout across all pages:
-
-Ensure:
-
-- Navigation works correctly
-- No horizontal scrolling
-- Proper spacing and typography
-- Cards stack vertically
-- No layout breaks on smaller screens
+Audit and fix mobile layout across all pages.
 
 --------------------------------------------------
 Task 7 — System light/dark theme support
+Status: COMPLETE
 --------------------------------------------------
 
-Ensure site respects system theme:
-
-- Use prefers-color-scheme
-- Maintain readability in both modes
-- Preserve existing visual design intent
-
-Do not introduce a new design system.
+Ensure site respects system theme.
 
 --------------------------------------------------
 Task 8 — Add 404 page
+Status: COMPLETE
 --------------------------------------------------
 
 Create:
 
 - /404.html
 
-Requirements:
-
-- Match site styling
-- Include navigation
-- Include link back to homepage and sections
-
 --------------------------------------------------
 Task 9 — SEO improvements
+Status: COMPLETE
 --------------------------------------------------
 
 Ensure each page includes:
-
 - Unique <title>
 - Meta description
 - Open Graph tags
 - Twitter preview tags
 
-Preserve current homepage SEO setup.
-
 --------------------------------------------------
-Task 10 — Verify and update sitemap.xml and robots.txt
---------------------------------------------------
-
-Do NOT recreate files if they already exist.
-
-Instead:
-
-- Verify /sitemap.xml includes all sections and article routes
-- Update sitemap.xml to include any newly created pages
-- Verify /robots.txt references sitemap.xml correctly
-- Update only if necessary
-
---------------------------------------------------
-Task 11 — Performance and accessibility pass
+Task 10 — sitemap.xml + robots.txt
+Status: COMPLETE
 --------------------------------------------------
 
-Improve:
-
-- Text contrast
-- Focus states
-- Keyboard navigation
-- Image sizing
-- Layout stability
-
-Preserve visual design.
+Create/maintain:
+- /sitemap.xml
+- /robots.txt (points to sitemap)
 
 --------------------------------------------------
-Task 12 — Contributor documentation
+Task 11 — Performance + accessibility quick pass
+Status: TODO
 --------------------------------------------------
 
-Update README.md with instructions:
+Requirements:
+- Check contrast and focus states
+- Keyboard navigation works
+- No layout shift regressions
+- Images sized appropriately
+- No horizontal scroll on mobile
+- Keep design consistent
 
-- How to add a new section
-- How to add a new article
-- How to use folder-based routing
-- How to trigger Codex via Issue + codex-run label
+Deliverables:
+- Minimal CSS/HTML fixes only where necessary
+- No redesign
 
-Keep instructions simple and clear.
+--------------------------------------------------
+Task 12 — Simple contributor docs
+Status: TODO
+--------------------------------------------------
+
+Update README with:
+- “How to add a new section page”
+- “How to add a new article page”
+- “How to run the Codex workflow (Issue + label)”
+- “How to run structure validation locally” (if applicable)
+
+--------------------------------------------------
