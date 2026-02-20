@@ -12,6 +12,12 @@ function requiredEnv(name) {
 const token = requiredEnv("GITHUB_TOKEN");
 const repo = requiredEnv("REPO"); // owner/name
 
+function ownerRepo() {
+  const [owner, name] = repo.split("/");
+  if (!owner || !name) throw new Error(`Invalid REPO value: ${repo}`);
+  return { owner, name };
+}
+
 function readTasksMd() {
   const p = path.join(process.cwd(), "TASKS.md");
   if (!fs.existsSync(p)) throw new Error("TASKS.md not found at repo root.");
@@ -19,72 +25,77 @@ function readTasksMd() {
 }
 
 /**
- * Supported TASKS.md patterns (per task):
+ * Parses TASKS.md in your current format:
  *
- * Pattern A (preferred, explicit):
- * - [ ] id:task-11 title: Some title
- *   body: |
- *     multi-line
+ * --------------------------------------------------
+ * Task 12 — Simple contributor docs
+ * Status: COMPLETE
+ * --------------------------------------------------
  *
- * Pattern B (lightweight, still stable):
- * - [ ] id:task-11 Some title
- *   - details: blah blah
+ * <body...>
  *
- * Completion is - [x]
+ * Returns tasks with:
+ *  - number (12)
+ *  - id ("task-12")
+ *  - titleLine ("Task 12 — ...")
+ *  - status ("TODO"|"COMPLETE"|other)
+ *  - body (block between separators)
  */
 function parseTasks(md) {
   const lines = md.split("\n");
   const tasks = [];
 
-  for (let i = 0; i < lines.length; i++) {
+  let i = 0;
+  while (i < lines.length) {
     const line = lines[i];
 
-    // Pattern A: "- [ ] id:task-11 title: Something"
-    let m = line.match(/^- \[( |x|X)\]\s+id:([^\s]+)\s+title:\s*(.+)\s*$/);
-
-    // Pattern B: "- [ ] id:task-11 Something"
-    if (!m) {
-      const m2 = line.match(/^- \[( |x|X)\]\s+id:([^\s]+)\s+(.+)\s*$/);
-      if (m2) m = [m2[0], m2[1], m2[2], m2[3]];
+    const taskHeader = line.match(/^Task\s+(\d+)\s+—\s+(.+)\s*$/);
+    if (!taskHeader) {
+      i++;
+      continue;
     }
 
-    if (!m) continue;
+    const number = parseInt(taskHeader[1], 10);
+    const titleText = taskHeader[2].trim();
+    const titleLine = `Task ${number} — ${titleText}`;
+    const id = `task-${number}`;
 
-    const done = m[1].toLowerCase() === "x";
-    const id = m[2].trim();
-    const title = m[3].trim();
-
-    // Try to extract an explicit "body: |" block (Pattern A)
-    let body = "";
-    let j = i + 1;
-
-    // Skip blank lines right after header
-    while (j < lines.length && lines[j].trim() === "") j++;
-
-    // Body block support
-    if (j < lines.length && lines[j].match(/^\s*body:\s*\|\s*$/)) {
-      j++;
-      const bodyLines = [];
-      while (j < lines.length) {
-        const l = lines[j];
-        if (l.match(/^- \[( |x|X)\]\s+id:/)) break; // next task
-        bodyLines.push(l.replace(/^\s{2}/, "")); // strip 2-space indent if present
-        j++;
+    // Find Status line within next few lines
+    let status = "";
+    let statusLineIndex = -1;
+    for (let j = i + 1; j < Math.min(i + 10, lines.length); j++) {
+      const m = lines[j].match(/^Status:\s*(TODO|COMPLETE)\s*$/i);
+      if (m) {
+        status = m[1].toUpperCase();
+        statusLineIndex = j;
+        break;
       }
-      body = bodyLines.join("\n").trimEnd();
-    } else {
-      // Otherwise gather up to the next task line as a bulleted body (Pattern B)
-      const bodyLines = [];
-      while (j < lines.length) {
-        const l = lines[j];
-        if (l.match(/^- \[( |x|X)\]\s+id:/)) break;
-        if (l.trim() !== "") bodyLines.push(l.trim());
-        j++;
-      }
-      body = bodyLines.join("\n").trimEnd();
+      // If we hit another Task header early, bail
+      if (lines[j].match(/^Task\s+\d+\s+—\s+/)) break;
     }
 
-    tasks.push({ id, title, body, done });
+    // Capture body until next "Task X —" header (or EOF)
+    // We include everything after the "Status:" line if present, otherwise after the header line.
+    const bodyStart = statusLineIndex !== -1 ? statusLineIndex + 1 : i + 1;
+    let k = bodyStart;
+    const bodyLines = [];
+    while (k < lines.length) {
+      if (lines[k].match(/^Task\s+\d+\s+—\s+/)) break;
+      bodyLines.push(lines[k]);
+      k++;
+    }
+
+    const body = bodyLines.join("\n").trimEnd();
+
+    tasks.push({
+      number,
+      id,
+      titleLine,
+      status,
+      body,
+    });
+
+    i = k;
   }
 
   return tasks;
@@ -109,12 +120,6 @@ async function ghFetch(url, options = {}) {
   return res.json();
 }
 
-function ownerRepo() {
-  const [owner, name] = repo.split("/");
-  if (!owner || !name) throw new Error(`Invalid REPO value: ${repo}`);
-  return { owner, name };
-}
-
 async function listOpenCodexIssues() {
   const { owner, name } = ownerRepo();
   const url = `${GITHUB_API}/repos/${owner}/${name}/issues?state=open&labels=codex-run&per_page=100`;
@@ -127,33 +132,26 @@ async function listOpenPulls() {
   return ghFetch(url);
 }
 
-function hasTaskIdInText(taskId, text) {
+function hasTaskId(taskId, text) {
   const hay = (text || "").toLowerCase();
   const id = taskId.toLowerCase();
   return (
     hay.includes(`task id: ${id}`) ||
     hay.includes(`taskid: ${id}`) ||
     hay.includes(`task_id: ${id}`) ||
+    hay.includes(`Task ${taskId.split("-")[1]} —`.toLowerCase()) ||
     hay.includes(id)
   );
 }
 
 async function alreadyInFlight(taskId) {
   const issues = await listOpenCodexIssues();
-  const foundIssue = issues.find((it) =>
-    hasTaskIdInText(taskId, `${it.title}\n${it.body || ""}`)
-  );
-  if (foundIssue) {
-    return { type: "issue", number: foundIssue.number, title: foundIssue.title };
-  }
+  const foundIssue = issues.find((it) => hasTaskId(taskId, `${it.title}\n${it.body || ""}`));
+  if (foundIssue) return { type: "issue", number: foundIssue.number, title: foundIssue.title };
 
   const pulls = await listOpenPulls();
-  const foundPr = pulls.find((it) =>
-    hasTaskIdInText(taskId, `${it.title}\n${it.body || ""}`)
-  );
-  if (foundPr) {
-    return { type: "pr", number: foundPr.number, title: foundPr.title };
-  }
+  const foundPr = pulls.find((it) => hasTaskId(taskId, `${it.title}\n${it.body || ""}`));
+  if (foundPr) return { type: "pr", number: foundPr.number, title: foundPr.title };
 
   return null;
 }
@@ -165,20 +163,19 @@ async function createCodexIssue(task) {
   const body =
 `Task ID: ${task.id}
 
-Task Title: ${task.title}
+${task.titleLine}
 
-Instructions:
-${task.body && task.body.trim() ? task.body.trim() : "(no body provided)"}
+Instructions (from TASKS.md):
+${task.body && task.body.trim() ? task.body.trim() : "(no instructions found in TASKS.md for this task)"}
 
 ---
 Automation notes:
 - Source of truth: TASKS.md
-- This issue was created by: scripts/dispatch-next-task.mjs
-- Please keep "Task ID: ${task.id}" intact in any PR body and commits.
+- Keep the "Task ID: ${task.id}" line intact in the PR body.
 `;
 
   const payload = {
-    title: task.title,
+    title: task.titleLine,
     body,
     labels: ["codex-run"],
   };
@@ -190,15 +187,10 @@ async function main() {
   const md = readTasksMd();
   const tasks = parseTasks(md);
 
-  if (!tasks.length) {
-    console.log("No tasks found. Ensure TASKS.md uses lines like: - [ ] id:task-11 ...");
-    return;
-  }
-
-  const next = tasks.find((t) => !t.done);
+  const next = tasks.find((t) => t.status === "TODO");
 
   if (!next) {
-    console.log("All tasks complete. Nothing to dispatch.");
+    console.log("No TODO tasks found (all COMPLETE). Nothing to dispatch.");
     return;
   }
 
