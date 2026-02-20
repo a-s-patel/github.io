@@ -2,85 +2,112 @@ name: Codex - Issue to PR
 
 on:
   issues:
-    types: [labeled]
+    types: [opened, labeled]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
 
 jobs:
-  codex_issue_to_pr:
-    if: github.event.label.name == 'codex-run'
+  codex:
+    if: |
+      (
+        github.event_name == 'issues' &&
+        contains(github.event.issue.labels.*.name, 'codex-run')
+      )
+      ||
+      (
+        github.event_name == 'issue_comment' &&
+        contains(github.event.comment.body, 'run next task')
+      )
+
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: write
-      pull-requests: write
-      issues: read
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v5
 
-      - name: Run Codex on the issue
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Git identity
+        run: |
+          git config user.name "codex-bot"
+          git config user.email "codex-bot@users.noreply.github.com"
+
+      - name: Create working branch
+        id: branch
+        run: |
+          BRANCH="codex/task-$(date +%s)"
+          git checkout -b "$BRANCH"
+          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+
+      - name: Run Codex
         id: run_codex
         uses: openai/codex-action@v1
         with:
           openai-api-key: ${{ secrets.OPENAI_API_KEY }}
           prompt: |
-            ISSUE TITLE:
-            ${{ github.event.issue.title }}
+            SYSTEM ROLE:
+            You are Codex operating as an autonomous site builder.
 
-            ISSUE BODY:
-            ${{ github.event.issue.body }}
+            You must read TASKS.md and execute exactly ONE next incomplete task.
 
-            ---
-            Follow the repository rules in:
-            .github/codex/prompts/issue_to_pr.md
-          safety-strategy: drop-sudo
-          sandbox: workspace-write
+            RULES:
 
-      - name: Validate site structure
-        run: node scripts/validate-site.mjs
+            1. Find first task with Status: TODO
+            2. Check if outputs already exist:
+               - If they exist:
+                 - mark task COMPLETE
+                 - commit TASKS.md only
+                 - stop
+               - If they do not exist:
+                 - implement task fully
+                 - update manifest and sitemap if needed
+                 - mark task COMPLETE in TASKS.md
+                 - stop
 
-      - name: Create PR from changes
+            Never execute multiple tasks.
+
+            Preserve validator compatibility.
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet; then
+            echo "changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit changes
+        if: steps.changes.outputs.changes == 'true'
+        run: |
+          git add .
+          git commit -m "Codex: execute next TASKS.md task"
+
+      - name: Push branch
+        if: steps.changes.outputs.changes == 'true'
+        run: |
+          git push origin ${{ steps.branch.outputs.branch }}
+
+      - name: Create Pull Request
+        if: steps.changes.outputs.changes == 'true'
         uses: actions/github-script@v7
         env:
-          CODEX_FINAL_MESSAGE: ${{ steps.run_codex.outputs.final-message }}
+          BRANCH_NAME: ${{ steps.branch.outputs.branch }}
         with:
-          github-token: ${{ github.token }}
           script: |
-            const { execSync } = require('child_process');
-
-            const issueNumber = context.payload.issue.number;
-            const branch = `codex/issue-${issueNumber}`;
-
-            execSync(`git config user.name "codex-bot"`);
-            execSync(`git config user.email "codex-bot@users.noreply.github.com"`);
-
-            execSync(`git checkout -b ${branch}`);
-
-            const status = execSync(`git status --porcelain`).toString().trim();
-            if (!status) {
-              console.log("No file changes detected; skipping PR creation.");
-              return;
-            }
-
-            execSync(`git add -A`);
-            execSync(`git commit -m "POH: Issue #${issueNumber}"`);
-            execSync(`git push --set-upstream origin ${branch}`);
-
-            let finalMessage = process.env.CODEX_FINAL_MESSAGE || "";
-            finalMessage = finalMessage.replace(/```/g, "`\u200b`\u200b`");
-
-            const prBody =
-              `Automated PR for Issue #${issueNumber}.\n\n` +
-              `## Codex output\n\n` +
-              `\`\`\`\n${finalMessage}\n\`\`\`\n`;
-
             const pr = await github.rest.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: `POH: ${context.payload.issue.title}`,
-              head: branch,
+              title: "Codex: execute next task",
+              head: process.env.BRANCH_NAME,
               base: "main",
-              body: prBody
+              body: "Automated task execution from TASKS.md"
             });
 
-            console.log(`PR created: ${pr.data.html_url}`);
+            console.log("PR created:", pr.data.html_url);
