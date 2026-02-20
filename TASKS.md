@@ -160,7 +160,7 @@ Create/maintain:
 
 --------------------------------------------------
 Task 11 — Performance + accessibility quick pass
-Status: TODO
+Status: COMPLETE
 --------------------------------------------------
 
 Requirements:
