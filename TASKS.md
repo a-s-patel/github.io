@@ -177,7 +177,7 @@ Deliverables:
 
 --------------------------------------------------
 Task 12 — Simple contributor docs
-Status: TODO
+Status: COMPLETE
 --------------------------------------------------
 
 Update README with:
