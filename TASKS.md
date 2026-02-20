@@ -187,3 +187,117 @@ Update README with:
 - “How to run structure validation locally” (if applicable)
 
 --------------------------------------------------
+Task 13 — Playbooks: create missing article pages and wire card links
+Status: TODO
+--------------------------------------------------
+
+Goal:
+- On /playbooks/, each card must link to its corresponding article page.
+- Create article pages that do not exist yet.
+- Maintain exact format consistency with existing article pages.
+
+DO NOT recreate:
+- /playbooks/meta-hooks-playbook/ (already exists)
+- /playbooks/activation-experiment-bank/ (already exists)
+
+Requirements:
+- Inspect /playbooks/index.html and identify all cards.
+- For each card:
+  - If the linked article page already exists, ensure the card links to it.
+  - If the article page does not exist, create it using the existing article template and design patterns.
+- The new article pages must follow folder-based routing:
+  - /playbooks/<slug>/index.html
+- Use root-relative links only.
+- Update /sitemap.xml if your site’s workflow expects new pages to be included.
+
+--------------------------------------------------
+Task 14 — Case Studies: create missing article pages and wire card links
+Status: TODO
+--------------------------------------------------
+
+Goal:
+- On /case-studies/, each card must link to its corresponding article page.
+- Create article pages that do not exist yet.
+- Maintain exact format consistency with existing article pages.
+
+DO NOT recreate:
+- /case-studies/cac-120-to-95/ (already exists)
+
+Requirements:
+- Inspect /case-studies/index.html and identify all cards.
+- For each card:
+  - If the linked article page already exists, ensure the card links to it.
+  - If the article page does not exist, create it using the existing article template and design patterns.
+- New pages must follow:
+  - /case-studies/<slug>/index.html
+- Use root-relative links only.
+- Update /sitemap.xml if needed.
+
+--------------------------------------------------
+Task 15 — Creative Lab: create missing article pages and wire card links
+Status: TODO
+--------------------------------------------------
+
+Goal:
+- On /creative-lab/, each card must link to its corresponding article page.
+- Create article pages that do not exist yet.
+- Maintain exact format consistency with existing article pages.
+
+DO NOT recreate:
+- /creative-lab/creative-brief-generator/ (already exists)
+
+Requirements:
+- Inspect /creative-lab/index.html and identify all cards.
+- For each card:
+  - If the linked article page already exists, ensure the card links to it.
+  - If the article page does not exist, create it using the existing article template and design patterns.
+- New pages must follow:
+  - /creative-lab/<slug>/index.html
+- Use root-relative links only.
+- Update /sitemap.xml if needed.
+
+--------------------------------------------------
+Task 16 — Growth Vault: create missing article pages and wire card links
+Status: TODO
+--------------------------------------------------
+
+Goal:
+- On /growth-vault/, each card must link to its corresponding article page.
+- Create article pages that do not exist yet.
+- Maintain exact format consistency with existing article pages.
+
+DO NOT recreate:
+- /growth-vault/metrics-dictionary/ (already exists)
+
+Requirements:
+- Inspect /growth-vault/index.html and identify all cards.
+- For each card:
+  - If the linked article page already exists, ensure the card links to it.
+  - If the article page does not exist, create it using the existing article template and design patterns.
+- New pages must follow:
+  - /growth-vault/<slug>/index.html
+- Use root-relative links only.
+- Update /sitemap.xml if needed.
+
+--------------------------------------------------
+Task 17 — Media: create missing article pages and wire card links
+Status: TODO
+--------------------------------------------------
+
+Goal:
+- On /media/, each card must link to its corresponding article page.
+- Create article pages that do not exist yet.
+- Maintain exact format consistency with existing article pages.
+
+DO NOT recreate:
+- /media/newsletter/ (already exists)
+
+Requirements:
+- Inspect /media/index.html and identify all cards.
+- For each card:
+  - If the linked article page already exists, ensure the card links to it.
+  - If the article page does not exist, create it using the existing article template and design patterns.
+- New pages must follow:
+  - /media/<slug>/index.html
+- Use root-relative links only.
+- Update /sitemap.xml if needed.
