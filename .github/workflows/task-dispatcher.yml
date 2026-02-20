@@ -1,0 +1,39 @@
+name: Task Dispatcher
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"  # safety net; adjust or remove later
+  workflow_run:
+    workflows: ["Codex - Issue to PR"]
+    types: [completed]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: read
+
+concurrency:
+  group: task-dispatcher
+  cancel-in-progress: false
+
+jobs:
+  dispatch:
+    if: |
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Dispatch next task from TASKS.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: node scripts/dispatch-next-task.mjs
