@@ -18,11 +18,6 @@ concurrency:
 
 jobs:
   codex:
-    # Run only when:
-    # - Issue event AND issue has codex-run label
-    # - OR Issue comment event AND issue has codex-run label AND comment contains "run next task"
-    #   AND commenter is github-actions[bot] OR repo owner (allows safe manual testing)
-    # - OR workflow_dispatch (manual)
     if: |
       github.event_name == 'workflow_dispatch'
       ||
@@ -59,14 +54,15 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            // For workflow_dispatch runs, we need an explicit issue number.
-            // We'll pick the most recent open codex-run issue.
+            // For issues / issue_comment events, GitHub Script exposes context.issue.number reliably.
             if (context.eventName !== "workflow_dispatch") {
-              core.setOutput("issue_number", String(context.payload.issue.number));
+              core.setOutput("issue_number", String(context.issue.number));
               return;
             }
 
+            // For workflow_dispatch runs, pick the most recent open codex-run issue.
             const { owner, repo } = context.repo;
+
             const issues = await github.rest.issues.listForRepo({
               owner,
               repo,
@@ -80,8 +76,9 @@ jobs:
               return;
             }
 
-            // Most recent first
-            const latest = issues.data.sort((a,b) => new Date(b.created_at) - new Date(a.created_at))[0];
+            const latest = issues.data
+              .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0];
+
             core.setOutput("issue_number", String(latest.number));
 
       - name: Fetch Issue details
@@ -136,7 +133,7 @@ jobs:
             - Maintain format consistency with existing pages/components.
             - Do NOT recreate pages explicitly marked as already-existing.
             - Use kebab-case slugs from card titles as specified.
-            - Ensure the entire card is clickable (current behavior) while keeping valid HTML (avoid nested anchors).
+            - Ensure the entire card is clickable while keeping valid HTML (avoid nested anchors).
             - If the task appears already completed, make no functional changes.
 
             TASK (from Issue):
@@ -205,7 +202,6 @@ Automated task execution via Codex from a codex-run issue.`;
               body: prBody
             });
 
-            // Comment on the issue with the PR link (nice for traceability)
             await github.rest.issues.createComment({
               owner,
               repo,
@@ -220,7 +216,6 @@ Automated task execution via Codex from a codex-run issue.`;
         uses: actions/github-script@v7
         with:
           script: |
-            // If Codex produced no changes, comment on the issue for visibility.
             const { owner, repo } = context.repo;
             const issueNumber = Number("${{ steps.meta.outputs.issue_number }}");
 
