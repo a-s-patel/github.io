@@ -56,6 +56,21 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.proofoverhype.click/playbooks/landing-page-teardown/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.proofoverhype.click/playbooks/creative-testing-framework/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.proofoverhype.click/playbooks/lifecycle-retention-map/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.proofoverhype.click/playbooks/activation-experiment-bank/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
