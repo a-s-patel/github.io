@@ -212,7 +212,7 @@ Requirements:
 
 --------------------------------------------------
 Task 14 — Case Studies: create missing article pages and wire card links
-Status: TODO
+Status: COMPLETE
 --------------------------------------------------
 
 Goal:
