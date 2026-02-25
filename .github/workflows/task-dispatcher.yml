@@ -34,6 +34,6 @@ jobs:
 
       - name: Dispatch next task from TASKS.md
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DISPATCH_PAT || secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
         run: node scripts/dispatch-next-task.mjs
