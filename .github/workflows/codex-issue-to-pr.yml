@@ -156,41 +156,40 @@ jobs:
         uses: actions/github-script@v7
         env:
           BRANCH_NAME: ${{ steps.branch.outputs.branch }}
+          TASK_ID: ${{ steps.meta.outputs.task_id }}
+          ISSUE_TITLE: ${{ steps.meta.outputs.issue_title }}
+          ISSUE_BODY: ${{ steps.meta.outputs.issue_body }}
+          ISSUE_NUMBER: ${{ steps.meta.outputs.issue_number }}
         with:
           script: |
             const { owner, repo } = context.repo;
 
-            const taskId = `${{ toJson(steps.meta.outputs.task_id) }}`;
-            const issueTitle = `${{ toJson(steps.meta.outputs.issue_title) }}`;
-            const issueBody = `${{ toJson(steps.meta.outputs.issue_body) }}`;
-            const issueNumber = Number("${{ steps.meta.outputs.issue_number }}");
+            const taskId = process.env.TASK_ID || "unknown-task";
+            const issueTitle = process.env.ISSUE_TITLE || "Codex task";
+            const issueBody = process.env.ISSUE_BODY || "";
+            const issueNumber = Number(process.env.ISSUE_NUMBER || "0");
+            const branchName = process.env.BRANCH_NAME;
 
-            const safeTaskId = JSON.parse(taskId || '""');
-            const safeIssueTitle = JSON.parse(issueTitle);
-            const safeIssueBody = JSON.parse(issueBody);
+            const prTitle = issueTitle.includes(taskId) ? issueTitle : `${issueTitle} (${taskId})`;
 
-            const prBodyLines = [
-              `Task ID: ${safeTaskId || "unknown-task"}`,
+            const prBody = [
+              `Task ID: ${taskId}`,
               ``,
               `Issue: #${issueNumber}`,
               ``,
-              safeIssueBody,
+              issueBody,
               ``,
               `---`,
               `Automated task execution via Codex from a codex-run issue.`
-            ];
-
-            const prTitle = (safeTaskId && safeIssueTitle.includes(safeTaskId))
-              ? safeIssueTitle
-              : (safeTaskId ? `${safeIssueTitle} (${safeTaskId})` : safeIssueTitle);
+            ].join("\n");
 
             const pr = await github.rest.pulls.create({
               owner,
               repo,
               title: prTitle,
-              head: process.env.BRANCH_NAME,
+              head: branchName,
               base: "main",
-              body: prBodyLines.join("\n")
+              body: prBody
             });
 
             await github.rest.issues.createComment({
@@ -199,6 +198,8 @@ jobs:
               issue_number: issueNumber,
               body: `Opened PR: ${pr.data.html_url}`
             });
+
+            console.log("PR created:", pr.data.html_url);
 
       - name: No changes detected
         if: steps.changes.outputs.changes == 'false'
@@ -213,4 +214,4 @@ jobs:
               repo,
               issue_number: issueNumber,
               body: "Codex run completed, but no file changes were detected (task may already be complete)."
-            });
+            );
