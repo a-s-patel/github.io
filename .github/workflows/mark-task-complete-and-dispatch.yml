@@ -6,7 +6,7 @@ on:
 
 permissions:
   contents: write
-  issues: read
+  issues: write
   pull-requests: read
 
 concurrency:
@@ -20,6 +20,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Verify scripts exist
+        shell: bash
+        run: |
+          set -e
+          test -f scripts/mark-task-complete.mjs
+          test -f scripts/dispatch-next-task.mjs
+          echo "✅ scripts present"
 
       - name: Extract Task ID from PR body
         id: task
@@ -34,12 +49,6 @@ jobs:
           fi
           echo "task_id=$TASK_ID" >> $GITHUB_OUTPUT
 
-      - name: Setup Node
-        if: steps.task.outputs.task_id != ''
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
       - name: Mark task complete in TASKS.md
         if: steps.task.outputs.task_id != ''
         env:
@@ -49,6 +58,7 @@ jobs:
       - name: Dispatch next task
         if: steps.task.outputs.task_id != ''
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Prefer PAT so the created issue triggers Codex workflow
+          GITHUB_TOKEN: ${{ secrets.DISPATCH_PAT || secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
         run: node scripts/dispatch-next-task.mjs
