@@ -281,7 +281,7 @@ Requirements:
 
 --------------------------------------------------
 Task 17 — Media: create missing article pages and wire card links
-Status: TODO
+Status: COMPLETE
 --------------------------------------------------
 
 Goal:
