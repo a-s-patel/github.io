@@ -2,7 +2,7 @@ name: Codex - Issue to PR
 
 on:
   issues:
-    types: [opened, labeled]
+    types: [labeled]
   issue_comment:
     types: [created]
   workflow_dispatch:
@@ -198,8 +198,6 @@ jobs:
               issue_number: issueNumber,
               body: `Opened PR: ${pr.data.html_url}`
             });
-
-            console.log("PR created:", pr.data.html_url);
 
       - name: No changes detected
         if: steps.changes.outputs.changes == 'false'
