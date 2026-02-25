@@ -5,19 +5,27 @@ on:
     types: [opened, labeled]
   issue_comment:
     types: [created]
+  workflow_dispatch:
 
 permissions:
   contents: write
   pull-requests: write
   issues: write
 
+concurrency:
+  group: codex-issue-to-pr
+  cancel-in-progress: false
+
 jobs:
   codex:
-    # Only run if:
-    # - Issues event AND issue has codex-run label
-    # - OR issue_comment event AND issue has codex-run label AND comment contains "run next task"
-    #   AND the commenter is github-actions[bot] (prevents random humans from accidentally triggering runs)
+    # Run only when:
+    # - Issue event AND issue has codex-run label
+    # - OR Issue comment event AND issue has codex-run label AND comment contains "run next task"
+    #   AND commenter is github-actions[bot] OR repo owner (allows safe manual testing)
+    # - OR workflow_dispatch (manual)
     if: |
+      github.event_name == 'workflow_dispatch'
+      ||
       (
         github.event_name == 'issues' &&
         contains(github.event.issue.labels.*.name, 'codex-run')
@@ -27,7 +35,10 @@ jobs:
         github.event_name == 'issue_comment' &&
         contains(github.event.issue.labels.*.name, 'codex-run') &&
         contains(github.event.comment.body, 'run next task') &&
-        github.event.comment.user.login == 'github-actions[bot]'
+        (
+          github.event.comment.user.login == 'github-actions[bot]' ||
+          github.event.comment.user.login == github.repository_owner
+        )
       )
 
     runs-on: ubuntu-latest
@@ -43,28 +54,67 @@ jobs:
           git config user.name "codex-bot"
           git config user.email "codex-bot@users.noreply.github.com"
 
-      - name: Create working branch
-        id: branch
-        run: |
-          BRANCH="codex/task-$(date +%s)"
-          git checkout -b "$BRANCH"
-          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+      - name: Resolve Issue context (workflow_dispatch support)
+        id: issuectx
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // For workflow_dispatch runs, we need an explicit issue number.
+            // We'll pick the most recent open codex-run issue.
+            if (context.eventName !== "workflow_dispatch") {
+              core.setOutput("issue_number", String(context.payload.issue.number));
+              return;
+            }
 
-      - name: Extract Task ID and prepare PR metadata
+            const { owner, repo } = context.repo;
+            const issues = await github.rest.issues.listForRepo({
+              owner,
+              repo,
+              state: "open",
+              labels: "codex-run",
+              per_page: 50
+            });
+
+            if (!issues.data.length) {
+              core.setFailed("No open issues with label 'codex-run' found for workflow_dispatch run.");
+              return;
+            }
+
+            // Most recent first
+            const latest = issues.data.sort((a,b) => new Date(b.created_at) - new Date(a.created_at))[0];
+            core.setOutput("issue_number", String(latest.number));
+
+      - name: Fetch Issue details
         id: meta
         uses: actions/github-script@v7
         with:
           script: |
-            const issue = context.payload.issue;
-            const issueBody = (issue && issue.body) ? issue.body : "";
-            const issueTitle = (issue && issue.title) ? issue.title : "Codex task";
+            const { owner, repo } = context.repo;
+            const issueNumber = Number("${{ steps.issuectx.outputs.issue_number }}");
+
+            const issue = await github.rest.issues.get({
+              owner,
+              repo,
+              issue_number: issueNumber
+            });
+
+            const issueTitle = issue.data.title || "Codex task";
+            const issueBody = issue.data.body || "";
 
             const match = issueBody.match(/^Task ID:\s*([^\s]+)\s*$/m);
             const taskId = match ? match[1].trim() : "";
 
+            core.setOutput("issue_number", String(issueNumber));
             core.setOutput("task_id", taskId);
             core.setOutput("issue_title", issueTitle);
             core.setOutput("issue_body", issueBody);
+
+      - name: Create working branch
+        id: branch
+        run: |
+          BRANCH="codex/${{ steps.meta.outputs.task_id || 'task' }}-$(date +%s)"
+          git checkout -b "$BRANCH"
+          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
 
       - name: Run Codex
         id: run_codex
@@ -77,15 +127,17 @@ jobs:
 
             You must implement EXACTLY ONE task: the one described in the triggering GitHub Issue.
 
-            The Issue body will include a line like:
+            The Issue body includes a line:
             Task ID: <id>
 
             Rules:
             - Implement only this one task.
-            - Make the necessary file changes.
-            - Preserve validator compatibility.
-            - Do NOT execute multiple tasks.
-            - If the task appears already completed, make no functional changes; keep the repo consistent.
+            - Create/update only what is necessary to complete it.
+            - Maintain format consistency with existing pages/components.
+            - Do NOT recreate pages explicitly marked as already-existing.
+            - Use kebab-case slugs from card titles as specified.
+            - Ensure the entire card is clickable (current behavior) while keeping valid HTML (avoid nested anchors).
+            - If the task appears already completed, make no functional changes.
 
             TASK (from Issue):
             ${{ steps.meta.outputs.issue_title }}
@@ -120,30 +172,61 @@ jobs:
           BRANCH_NAME: ${{ steps.branch.outputs.branch }}
         with:
           script: |
-            const issue = context.payload.issue;
-            const issueBody = (issue && issue.body) ? issue.body : "";
-            const issueTitle = (issue && issue.title) ? issue.title : "Codex task";
+            const { owner, repo } = context.repo;
 
-            const match = issueBody.match(/^Task ID:\s*([^\s]+)\s*$/m);
-            const taskId = match ? match[1].trim() : "unknown-task";
+            const taskId = "${{ steps.meta.outputs.task_id }}";
+            const issueTitle = `${{ toJson(steps.meta.outputs.issue_title) }}`;
+            const issueBody = `${{ toJson(steps.meta.outputs.issue_body) }}`;
+            const issueNumber = Number("${{ steps.meta.outputs.issue_number }}");
+
+            const safeIssueTitle = JSON.parse(issueTitle);
+            const safeIssueBody = JSON.parse(issueBody);
 
             const prBody =
-`Task ID: ${taskId}
+`Task ID: ${taskId || "unknown-task"}
 
-${issueBody || ""}
+Issue: #${issueNumber}
+
+${safeIssueBody}
 
 ---
 Automated task execution via Codex from a codex-run issue.`;
 
-            const prTitle = issueTitle.includes(taskId) ? issueTitle : `${issueTitle} (${taskId})`;
+            const prTitle = taskId && safeIssueTitle.includes(taskId)
+              ? safeIssueTitle
+              : (taskId ? `${safeIssueTitle} (${taskId})` : safeIssueTitle);
 
             const pr = await github.rest.pulls.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
+              owner,
+              repo,
               title: prTitle,
               head: process.env.BRANCH_NAME,
               base: "main",
               body: prBody
             });
 
+            // Comment on the issue with the PR link (nice for traceability)
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: issueNumber,
+              body: `Opened PR: ${pr.data.html_url}`
+            });
+
             console.log("PR created:", pr.data.html_url);
+
+      - name: No changes detected
+        if: steps.changes.outputs.changes == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // If Codex produced no changes, comment on the issue for visibility.
+            const { owner, repo } = context.repo;
+            const issueNumber = Number("${{ steps.meta.outputs.issue_number }}");
+
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: issueNumber,
+              body: "Codex run completed, but no file changes were detected (task may already be complete)."
+            });
