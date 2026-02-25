@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- SEO Meta Tags -->
+    <meta
+      name="description"
+      content="Ad creative scorecards with rubrics to review concepts, clarity, proof, and performance potential."
+    />
+    <meta
+      name="keywords"
+      content="ad creative scorecards, creative review rubric, ad concept evaluation"
+    />
+    <meta name="author" content="Proof Over Hype" />
+    <link
+      rel="canonical"
+      href="https://www.proofoverhype.click/creative-lab/ad-creative-scorecards/"
+    />
+
+    <!-- Open Graph / Social Media Preview -->
+    <meta
+      property="og:title"
+      content="Ad Creative Scorecards | Proof Over Hype"
+    />
+    <meta
+      property="og:description"
+      content="Rubrics for reviewing and scaling ad creative concepts with clarity and proof."
+    />
+    <meta
+      property="og:image"
+      content="https://www.proofoverhype.click/images/Professional_Marketing_Dashboard.jpg"
+    />
+    <meta
+      property="og:url"
+      content="https://www.proofoverhype.click/creative-lab/ad-creative-scorecards/"
+    />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Ad Creative Scorecards | Proof Over Hype"
+    />
+    <meta
+      name="twitter:description"
+      content="Rubrics for reviewing and scaling ad creative concepts with clarity and proof."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.proofoverhype.click/images/Professional_Marketing_Dashboard.jpg"
+    />
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a" />
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://www.proofoverhype.click/images/favicon.svg"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ad Creative Scorecards | Proof Over Hype</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#8A6FDF", secondary: "#1E293B" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Other CSS libraries... -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <!-- Your own -->
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body class="bg-white min-h-screen">
+    <div data-include="/partials/header.html"></div>
+
+    <main class="bg-white">
+      <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <div class="max-w-3xl">
+            <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+              <a href="/" class="hover:text-gray-700">Home</a>
+              <span class="mx-2">→</span>
+              <a href="/creative-lab/" class="hover:text-gray-700">
+                Creative Lab
+              </a>
+              <span class="mx-2">→</span>
+              <span class="text-gray-600">Ad Creative Scorecards</span>
+            </nav>
+            <h1
+              class="hero-heading text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+            >
+              Ad Creative Scorecards
+            </h1>
+            <p class="hero-subheadline text-lg text-gray-600 mb-6 italic">
+              Use a simple rubric to evaluate clarity, proof, and performance
+              potential before you scale.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div class="bg-white border border-gray-100 rounded-lg p-6">
+              <h2 class="text-xl font-semibold text-gray-900 mb-4">
+                Scorecard preview
+              </h2>
+              <form class="space-y-4 text-sm text-gray-700">
+                <div>
+                  <label class="block font-medium text-gray-700" for="hook">
+                    Hook clarity (1-5)
+                  </label>
+                  <input
+                    id="hook"
+                    type="text"
+                    placeholder="Is the outcome obvious in 3 seconds?"
+                    class="mt-2 w-full rounded-md border border-gray-200 px-3 py-2 text-sm text-gray-900 focus:border-primary focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label class="block font-medium text-gray-700" for="proof">
+                    Proof strength (1-5)
+                  </label>
+                  <input
+                    id="proof"
+                    type="text"
+                    placeholder="Is there a tangible proof cue?"
+                    class="mt-2 w-full rounded-md border border-gray-200 px-3 py-2 text-sm text-gray-900 focus:border-primary focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label class="block font-medium text-gray-700" for="format">
+                    Format fit (1-5)
+                  </label>
+                  <input
+                    id="format"
+                    type="text"
+                    placeholder="Does the format match the channel?"
+                    class="mt-2 w-full rounded-md border border-gray-200 px-3 py-2 text-sm text-gray-900 focus:border-primary focus:outline-none"
+                  />
+                </div>
+                <button
+                  type="button"
+                  class="w-full rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white transition hover:bg-primary/90"
+                >
+                  Save Score
+                </button>
+              </form>
+            </div>
+
+            <div class="space-y-6">
+              <div class="bg-white border border-gray-100 rounded-lg p-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-4">
+                  Rubric cues
+                </h2>
+                <ul class="list-disc list-inside text-sm text-gray-700 space-y-2">
+                  <li>Hook: outcome is clear in 3 seconds.</li>
+                  <li>Proof: one metric or credible testimonial.</li>
+                  <li>Structure: beginning, middle, end are distinct.</li>
+                  <li>CTA: matches the promise and removes friction.</li>
+                </ul>
+              </div>
+
+              <div class="bg-gray-50 border border-gray-100 rounded-lg p-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-4">
+                  How to use this
+                </h2>
+                <ol class="list-decimal list-inside text-sm text-gray-700 space-y-2">
+                  <li>Score concepts before production.</li>
+                  <li>Only scale ads that average 4+ across criteria.</li>
+                  <li>Review the lowest score and rewrite that section.</li>
+                </ol>
+              </div>
+
+              <div class="flex flex-wrap gap-3">
+                <a
+                  href="/creative-lab/"
+                  class="inline-flex items-center rounded-md border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 transition hover:border-primary/50"
+                >
+                  Back to Creative Lab
+                </a>
+                <a
+                  href="/playbooks/"
+                  class="inline-flex items-center rounded-md bg-secondary px-4 py-2 text-sm font-semibold text-white transition hover:bg-secondary/90"
+                >
+                  Explore Playbooks
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-include="/partials/footer.html"></div>
+    <script src="/js/include-partials.js" defer></script>
+  </body>
+</html>
