@@ -19,13 +19,8 @@ concurrency:
 jobs:
   codex:
     if: |
-      github.event_name == 'workflow_dispatch'
-      ||
-      (
-        github.event_name == 'issues' &&
-        contains(github.event.issue.labels.*.name, 'codex-run')
-      )
-      ||
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'codex-run')) ||
       (
         github.event_name == 'issue_comment' &&
         contains(github.event.issue.labels.*.name, 'codex-run') &&
@@ -54,15 +49,12 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            // For issues / issue_comment events, GitHub Script exposes context.issue.number reliably.
             if (context.eventName !== "workflow_dispatch") {
               core.setOutput("issue_number", String(context.issue.number));
               return;
             }
 
-            // For workflow_dispatch runs, pick the most recent open codex-run issue.
             const { owner, repo } = context.repo;
-
             const issues = await github.rest.issues.listForRepo({
               owner,
               repo,
@@ -76,9 +68,7 @@ jobs:
               return;
             }
 
-            const latest = issues.data
-              .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0];
-
+            const latest = issues.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0];
             core.setOutput("issue_number", String(latest.number));
 
       - name: Fetch Issue details
@@ -114,7 +104,6 @@ jobs:
           echo "branch=$BRANCH" >> $GITHUB_OUTPUT
 
       - name: Run Codex
-        id: run_codex
         uses: openai/codex-action@v1
         with:
           openai-api-key: ${{ secrets.OPENAI_API_KEY }}
@@ -171,27 +160,29 @@ jobs:
           script: |
             const { owner, repo } = context.repo;
 
-            const taskId = "${{ steps.meta.outputs.task_id }}";
+            const taskId = `${{ toJson(steps.meta.outputs.task_id) }}`;
             const issueTitle = `${{ toJson(steps.meta.outputs.issue_title) }}`;
             const issueBody = `${{ toJson(steps.meta.outputs.issue_body) }}`;
             const issueNumber = Number("${{ steps.meta.outputs.issue_number }}");
 
+            const safeTaskId = JSON.parse(taskId || '""');
             const safeIssueTitle = JSON.parse(issueTitle);
             const safeIssueBody = JSON.parse(issueBody);
 
-            const prBody =
-`Task ID: ${taskId || "unknown-task"}
+            const prBodyLines = [
+              `Task ID: ${safeTaskId || "unknown-task"}`,
+              ``,
+              `Issue: #${issueNumber}`,
+              ``,
+              safeIssueBody,
+              ``,
+              `---`,
+              `Automated task execution via Codex from a codex-run issue.`
+            ];
 
-Issue: #${issueNumber}
-
-${safeIssueBody}
-
----
-Automated task execution via Codex from a codex-run issue.`;
-
-            const prTitle = taskId && safeIssueTitle.includes(taskId)
+            const prTitle = (safeTaskId && safeIssueTitle.includes(safeTaskId))
               ? safeIssueTitle
-              : (taskId ? `${safeIssueTitle} (${taskId})` : safeIssueTitle);
+              : (safeTaskId ? `${safeIssueTitle} (${safeTaskId})` : safeIssueTitle);
 
             const pr = await github.rest.pulls.create({
               owner,
@@ -199,7 +190,7 @@ Automated task execution via Codex from a codex-run issue.`;
               title: prTitle,
               head: process.env.BRANCH_NAME,
               base: "main",
-              body: prBody
+              body: prBodyLines.join("\n")
             });
 
             await github.rest.issues.createComment({
@@ -208,8 +199,6 @@ Automated task execution via Codex from a codex-run issue.`;
               issue_number: issueNumber,
               body: `Opened PR: ${pr.data.html_url}`
             });
-
-            console.log("PR created:", pr.data.html_url);
 
       - name: No changes detected
         if: steps.changes.outputs.changes == 'false'
