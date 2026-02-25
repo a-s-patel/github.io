@@ -188,7 +188,7 @@ Update README with:
 
 --------------------------------------------------
 Task 13 — Playbooks: create missing article pages and wire card links
-Status: TODO
+Status: COMPLETE
 --------------------------------------------------
 
 Goal:
