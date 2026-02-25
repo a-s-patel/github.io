@@ -235,7 +235,7 @@ Requirements:
 
 --------------------------------------------------
 Task 15 — Creative Lab: create missing article pages and wire card links
-Status: TODO
+Status: COMPLETE
 --------------------------------------------------
 
 Goal:
