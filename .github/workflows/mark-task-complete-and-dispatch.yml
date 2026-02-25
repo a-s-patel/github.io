@@ -17,6 +17,7 @@ jobs:
   complete_and_dispatch:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,10 +29,16 @@ jobs:
         with:
           node-version: 20
 
+      - name: Verify node is available
+        run: |
+          node -v
+          npm -v
+
       - name: Verify scripts exist
         shell: bash
         run: |
           set -e
+          ls -la scripts || true
           test -f scripts/mark-task-complete.mjs
           test -f scripts/dispatch-next-task.mjs
           echo "✅ scripts present"
@@ -58,7 +65,6 @@ jobs:
       - name: Dispatch next task
         if: steps.task.outputs.task_id != ''
         env:
-          # Prefer PAT so the created issue triggers Codex workflow
           GITHUB_TOKEN: ${{ secrets.DISPATCH_PAT || secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
         run: node scripts/dispatch-next-task.mjs
